@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+	/* See LICENSE file for copyright and license details. */
 
 /* interval between updates (in ms) */
 const unsigned int interval = 1000;
@@ -61,7 +61,15 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
+
+
+
 static const struct arg args[] = {
-	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+	{wifi_essid, "|  %s", "wlan0" },
+//	{ netspeed_rx, " - %sB/s", "wlan0"},
+	{ run_command, " | :%4s","amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
+	{ cpu_perc, " |  %s%%", NULL},
+	{ ram_perc, " |  %s%%", NULL},
+	{ battery_perc, " |  %s%%","BAT0"},
+	{ datetime, " | %s","%F %T"},
 };
