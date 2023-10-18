@@ -70,5 +70,5 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      5)
 	{ MODKEY|ShiftMask,		XK_q,      quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_r,      spawn,          SHCMD("systemctl reboot")},
-	{ MODKEY|ControlMask|ShiftMask, XK_s,      spawn,          SHCMD("systemctl shutdown now")},
+	{ MODKEY|ControlMask|ShiftMask, XK_s,      spawn,          SHCMD("shutdown now")},
 };
