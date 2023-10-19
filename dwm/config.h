@@ -48,7 +48,6 @@ static const Layout layouts[] = {
 };
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
@@ -72,14 +71,12 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_r,      spawn,          SHCMD("systemctl reboot")},
 	{ MODKEY|ControlMask|ShiftMask, XK_s,      spawn,          SHCMD("shutdown now")},
 };
-static const char *mutevolcmd[] = { "amixer", "-D", "pulse", "sset", "Master", "toggle", NULL };
-static const char *volupcmd[] = { "amixer", "-D", "pulse", "sset", "Master", "1%+", NULL };
-static const char *voldowncmd[] = { "amixer", "-D", "pulse", "sset", "Master", "1%-", NULL };
+static const char *mutevolcmd[] = { "amixer", "set", "Master", "toggle", NULL };
+static const char *volupcmd[] = { "amixer", "set", "Master", "1%+", NULL };
+static const char *voldowncmd[] = { "amixer", "set", "Master", "1%-", NULL };
 
 static Button buttons[] = {
-    // ...
     { ClkTagBar, 0, Button1, spawn, {.v = voldowncmd } },
     { ClkTagBar, 0, Button2, spawn, {.v = volupcmd } },
     { ClkTagBar, 0, Button3, spawn, {.v = mutevolcmd } },
-    // ...
 };
