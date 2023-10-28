@@ -71,12 +71,3 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_r,      spawn,          SHCMD("systemctl reboot")},
 	{ MODKEY|ControlMask|ShiftMask, XK_s,      spawn,          SHCMD("shutdown now")},
 };
-static const char *mutevolcmd[] = { "amixer", "set", "Master", "toggle", NULL };
-static const char *volupcmd[] = { "amixer", "set", "Master", "1%+", NULL };
-static const char *voldowncmd[] = { "amixer", "set", "Master", "1%-", NULL };
-
-static Button buttons[] = {
-    { ClkTagBar, 0, Button1, spawn, {.v = voldowncmd } },
-    { ClkTagBar, 0, Button2, spawn, {.v = volupcmd } },
-    { ClkTagBar, 0, Button3, spawn, {.v = mutevolcmd } },
-};
