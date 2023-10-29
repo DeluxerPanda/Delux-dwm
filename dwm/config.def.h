@@ -7,11 +7,12 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrains Mono:size=11", "JoyPixels:pixelsize=11:antialias=true:autohint=true" };
 static const char dmenufont[]       = "JetBrains Mono:size=11";
-static const char col_gray1[]       = "#2C2C2C"; // Black
-static const char col_gray2[]       = "#2C2C2C"; // Black
-static const char col_gray3[]       = "#FFFFFF"; // White
-static const char col_gray4[]       = "#FFFFFF"; // White
-static const char col_cyan[]        = "#FCF434"; // Yellow
+static const char col_gray1[] = "#3A3A3A"; // Mörkgrå
+static const char col_gray2[] = "#B3B3B3"; // Ljusgrå
+static const char col_gray3[] = "#EDEDED"; // Mycket ljusgrå
+static const char col_gray4[] = "#F8E23B"; // Blekgul
+static const char col_cyan[] = "#27AE60"; // grön
+
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
     [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
