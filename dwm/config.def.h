@@ -7,19 +7,19 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrains Mono:size=11", "JoyPixels:pixelsize=11:antialias=true:autohint=true" };
 static const char dmenufont[]       = "JetBrains Mono:size=11";
-static const char col_gray1[] = "#3A3A3A"; // Mörkgrå
-static const char col_gray2[] = "#B3B3B3"; // Ljusgrå
-static const char col_gray3[] = "#EDEDED"; // Mycket ljusgrå
-static const char col_gray4[] = "#F8E23B"; // Blekgul
-static const char col_cyan[] = "#27AE60"; // grön
+static const char col_black[] = "#000000";
+static const char col_purple[] = "#AD00FF";
+static const char col_white[] = "#FFFFFF";
+static const char col_yellow[] = "#FFCD00";
+static const char col_gray[] = "#7393B3";
 
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
-    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-    [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+    [SchemeNorm] = { col_white, col_black, col_gray },
+    [SchemeSel]  = { col_white, col_purple,  col_yellow  },
 };
 
-/* tagging */ 
+/* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "🎮" };
 
 static const Rule rules[] = {
