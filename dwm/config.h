@@ -61,12 +61,12 @@ static Key keys[] = {
 	{ MODKEY,		        XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_space,  spawn,          {.v = roficmd } },
 	{ MODKEY,			XK_Return, spawn,          {.v = termcmd } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
+	{ TAGKEYS(                        XK_1,                      0) },
+	{ TAGKEYS(                        XK_2,                      1) },
+	{ TAGKEYS(                        XK_3,                      2) },
+	{ TAGKEYS(                        XK_4,                      3) },
+	{ TAGKEYS(                        XK_5,                      4) },
+	{ TAGKEYS(                        XK_6,                      5) },
 	{ MODKEY|ShiftMask,		XK_q,      quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_r,      spawn,          SHCMD("systemctl reboot")},
 	{ MODKEY|ControlMask|ShiftMask, XK_s,      spawn,          SHCMD("shutdown now")},
