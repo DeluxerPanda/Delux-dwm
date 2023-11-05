@@ -28,8 +28,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Steam",    NULL,       NULL,       1 << 5,          0,         -1 },
+
 };
 
 /* layout(s) */
@@ -81,8 +81,8 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     { MODKEY|ControlMask|ShiftMask, XK_r,      spawn,          SHCMD("systemctl reboot") },
     { MODKEY|ControlMask|ShiftMask, XK_s,      spawn,          SHCMD("systemctl poweroff") },
-	{ 0,                       0x1008ff13,      spawn,          SHCMD("amixer set Master 1%+") },
-	{ 0,                       0x1008ff11,      spawn,          SHCMD("amixer set Master 1%-") },
+    { 0,                           0x1008ff11, spawn,          SHCMD("amixer set Master 1%-") },
+    { 0,                           0x1008ff13, spawn,          SHCMD("amixer set Master 1%+") },
 };
 
 /* button definitions */
