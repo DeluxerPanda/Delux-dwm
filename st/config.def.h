@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Liberation Mono:pixelsize=24:antialias=true:autohint=true";
 static int borderpx = 3;
 
 /*
@@ -98,43 +98,50 @@ float alpha = 0.9;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
 
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+  /* 8 normal colors */
+  [0] = "#1f182e", /* black   */
+  [1] = "#29203a", /* red     */
+  [2] = "#3b2f53", /* green   */
+  [3] = "#544474", /* yellow  */
+  [4] = "#735f9b", /* blue    */
+  [5] = "#9385b5", /* magenta */
+  [6] = "#b9b0d0", /* cyan    */
+  [7] = "#e4e1ed", /* white   */
 
-	[255] = 0,
+  /* 8 bright colors */
+  [8]  = "#b8a9dd", /* black   */
+  [9]  = "#69bfd7", /* red     */
+  [10] = "#aebd76", /* green   */
+  [11] = "#f086bf", /* yellow  */
+  [12] = "#a783ea", /* blue    */
+  [13] = "#6ca0b0", /* magenta */
+  [14] = "#c2afeb", /* cyan    */
+  [15] = "#f6ae81", /* white   */
 
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+  /* special colors */
+  [256] = "#130e1f", /* background */
+  [257] = "#cac3db", /* foreground */
 };
-
 
 /*
  * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
+ * foreground, background, cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
+ unsigned int defaultfg = 257;
+ unsigned int defaultbg = 256;
+ unsigned int defaultcs = 257;
+
+/*
+ * Colors used, when the specific fg == defaultfg. So in reverse mode this
+ * will reverse too. Another logic would only make the simple feature too
+ * complex.
+ */
+static unsigned int defaultitalic = 7;
+static unsigned int defaultunderline = 7;
+
+
+
 static unsigned int defaultrcs = 257;
 
 /*

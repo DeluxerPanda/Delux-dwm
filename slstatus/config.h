@@ -7,7 +7,7 @@ const unsigned int interval = 1000;
 static const char unknown_str[] = "n/a";
 
 /* maximum output string length */
-#define MAXLEN 2048
+#define MAXLEN 2050
 
 /*
  * function            description                     argument (example)
@@ -64,11 +64,12 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	{wifi_essid, "|  %s", "wlan0" },
+	{disk_free, "| %s", "/home"},
+	{disk_total, " / %s", "/home"},
 //	{ netspeed_rx, " - %sB/s", "wlan0"},
 	{ run_command, " | :%4s","amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
-	{ cpu_perc, " |  %s%%", NULL},
-	{ ram_perc, " |  %s%%", NULL},
-	{ battery_perc, " |  %s%%","BAT0"},
-	{ datetime, " | %s","%F %T"},
+	{ cpu_perc, " | : %s%%", NULL},
+	{ ram_perc, " | : %s%%", NULL},
+//	{ battery_perc, " |  %s%%","BAT0"},
+	{ datetime, " | %s","%F | %T |"},
 };

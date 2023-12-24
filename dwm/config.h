@@ -6,17 +6,18 @@ static const unsigned int gappx     = 6;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono:size=11", "JoyPixels:pixelsize=11:antialias=true:autohint=true" };
-static const char dmenufont[]       = "JetBrains Mono:size=11";
-static const char col_black[] = "#000000";
-static const char col_purple[] = "#AD00FF";
-static const char col_white[] = "#FFFFFF";
-static const char col_yellow[] = "#FFCD00";
-static const char col_gray[] = "#7393B3";
+static const char *fonts[]          = { "JetBrains Mono:size=15", "JoyPixels:pixelsize=15:antialias=true:autohint=true" };
+static const char dmenufont[]       = "JetBrains Mono:size=15";
+static const char col_gray1[]       = "#2E3440";
+static const char col_gray2[]       = "#3B4252";
+static const char col_gray3[]       = "#D8DEE9";
+static const char col_gray4[]       = "#ECEFF4";
+static const char col_cyan[]        = "#434C5E";
+static const char col_yellow[]      = "#FFCD00";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-    [SchemeNorm] = { col_white, col_black, col_gray },
-    [SchemeSel]  = { col_white, col_purple,  col_yellow  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_yellow  },
 };
 
 /* tagging */
@@ -29,6 +30,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Steam",    NULL,       NULL,       1 << 5,          0,         -1 },
+	{ "TeamSpeak",    NULL,       NULL,       1 << 0,          0,         1 },
 
 };
 
@@ -81,8 +83,9 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     { MODKEY|ControlMask|ShiftMask, XK_r,      spawn,          SHCMD("systemctl reboot") },
     { MODKEY|ControlMask|ShiftMask, XK_s,      spawn,          SHCMD("systemctl poweroff") },
-    { 0,                           0x1008ff11, spawn,          SHCMD("amixer set Master 1%-") },
-    { 0,                           0x1008ff13, spawn,          SHCMD("amixer set Master 1%+") },
+   { 0,                             XK_Print,    spawn,        SHCMD("flameshot gui") },
+   // { 0,                           0x1008ff11, spawn,          SHCMD("amixer set Master 1%-") },
+    //{ 0,                           0x1008ff13, spawn,          SHCMD("amixer set Master 1%+") },
 };
 
 /* button definitions */
