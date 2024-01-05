@@ -5,9 +5,9 @@ static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 6;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono:size=15", "JoyPixels:pixelsize=15:antialias=true:autohint=true" };
-static const char dmenufont[]       = "JetBrains Mono:size=15";
+static const int topbar             = 1;        /* 0 means bottom bar */ 
+static const char *fonts[]          = { "JetBrainsMonoNL Nerd Font Mono:size=15", "JoyPixels:pixelsize=15:antialias=true:autohint=true" };
+static const char dmenufont[]       = "JetBrainsMonoNL Nerd Font Mono:size=15";
 static const char col_gray1[]       = "#2E3440";
 static const char col_gray2[]       = "#3B4252";
 static const char col_gray3[]       = "#D8DEE9";
