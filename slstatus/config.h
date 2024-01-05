@@ -68,8 +68,9 @@ static const struct arg args[] = {
 	{disk_total, " / %s", "/home"},
 //	{ netspeed_rx, " - %sB/s", "wlan0"},
 	{ run_command, " | :%4s","amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
-	{ cpu_perc, " | : %s%%", NULL},
-	{ ram_perc, " | : %s%%", NULL},
+	{ cpu_perc, " | : %s%%", NULL},
+	{ ram_perc, " | : %s%%", NULL},
 //	{ battery_perc, " |  %s%%","BAT0"},
 	{ datetime, " | %s","%F | %T |"},
 };
+
