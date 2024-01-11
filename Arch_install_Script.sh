@@ -176,7 +176,11 @@ for app in "dwm" "st" "slstatus"; do
     sudo mv "$app" ~/.config/suckless
     echo "Moving $app"
 done
-
+for app in "dwm" "st" "slstatus"; do
+    cd ~/.config/suckless/"$app"
+    echo "Installing $app"
+    sudo make clean install
+done
 #Fixar RC
 clear
 titel_message_length=${#titel_message}
@@ -188,7 +192,7 @@ message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
 printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 
-cd $arbets_dir
+cd $arbets_dir/RC_conf
 for app in ".bashrc" ".xinitrc"; do
     mv "$app" ~/
     echo "Moving $app"
