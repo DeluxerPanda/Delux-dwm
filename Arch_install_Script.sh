@@ -121,7 +121,7 @@ message2_length=${#message2}
 spaces=$(( (${#separator} - message2_length) / 2 ))
  printf "%s%${spaces}s%s\n%s\n" "" "" "$message2" "$separator"
 
-yay --noconfirm p7zip-gui
+yay -S --noconfirm p7zip-gui
 
 #installerar starship
 clear
