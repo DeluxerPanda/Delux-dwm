@@ -150,9 +150,9 @@ message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
 printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 
-mkdir -p ~/Bilder/Bakgrundsbilder
+mkdir -p ~/Bilder/Wallpapers
 
-mv $arbets_dir/Bakgrundsbilder/ ~/Bilder/
+mv $arbets_dir/Wallpapers/ ~/Bilder/
 
 #Fixar dwm
 clear
