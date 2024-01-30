@@ -34,7 +34,7 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 echo -ne "
 1: installerar: wget, libxft, libxinerama, xorg-xrandr, xwallpaper, rofi,
 alsa-utils, base-devel, firefox, dolphin, xcompmgr, neofetch, 
-noto-fonts-emoji, arandr, breeze-icons, bash-completion
+noto-fonts-emoji, arandr, breeze-icons, bash-completion, xinit
 3: installerar p7zip-gui
 4: installerar starship
 5: Fixar dwm, st, slstatus. Så dom funkar!
@@ -60,7 +60,7 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 
 message2="wget, libxft, libxinerama, xorg-xrandr, xwallpaper, rofi,
 alsa-utils, base-devel, firefox, dolphin, xcompmgr, neofetch, 
-noto-fonts-emoji, arandr, breeze-icons, bash-completion"
+noto-fonts-emoji, arandr, breeze-icons, bash-completion, xinit"
 message2_length=${#message2}
 spaces=$(( (${#separator} - message2_length) / 2 ))
  printf "%s%${spaces}s%s\n%s\n" "" "" "$message2" "$separator"
@@ -84,6 +84,7 @@ sudo apt install -y libxft-dev
 sudo apt install -y libxinerama-dev
 sudo apt install -y libfreetype6-dev
 sudo apt install -y libfontconfig1-dev
+sudo apt install -y xinit
 
 #Installerar flatpak
 clear
