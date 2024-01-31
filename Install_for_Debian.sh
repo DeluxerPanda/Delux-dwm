@@ -34,7 +34,7 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 echo -ne "
 1: installerar: wget, libxft, libxinerama, xorg-xrandr, xwallpaper, rofi,
 alsa-utils, base-devel, firefox, dolphin, xcompmgr, neofetch, 
-noto-fonts-emoji, arandr, breeze-icons, bash-completion, xinit
+noto-fonts-emoji, arandr, breeze-icons, bash-completion, xinit, flameshot
 3: installerar p7zip-gui
 4: installerar starship
 5: Fixar dwm, st, slstatus. Så dom funkar!
@@ -85,6 +85,7 @@ sudo apt install -y libxinerama-dev
 sudo apt install -y libfreetype6-dev
 sudo apt install -y libfontconfig1-dev
 sudo apt install -y xinit
+sudo apt install -y flameshot
 
 #Installerar flatpak
 clear
