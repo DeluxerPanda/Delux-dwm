@@ -34,7 +34,7 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 echo -ne "
 1: installerar: wget, libxft, libxinerama, xorg-xrandr, xwallpaper, rofi,
 alsa-utils, base-devel, firefox, dolphin, xcompmgr, neofetch, 
-noto-fonts-emoji, arandr, breeze-icons, bash-completion
+noto-fonts-emoji, arandr, breeze-icons, bash-completion, flameshot
 2: installerar YAY
 3: installerar p7zip-gui
 4: installerar starship
@@ -61,7 +61,7 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 
 message2="wget, libxft, libxinerama, xorg-xrandr, xwallpaper, rofi,
 alsa-utils, base-devel, firefox, dolphin, xcompmgr, neofetch, 
-noto-fonts-emoji, arandr, breeze-icons, bash-completion"
+noto-fonts-emoji, arandr, breeze-icons, bash-completion, flameshot"
 message2_length=${#message2}
 spaces=$(( (${#separator} - message2_length) / 2 ))
  printf "%s%${spaces}s%s\n%s\n" "" "" "$message2" "$separator"
@@ -83,6 +83,7 @@ sudo pacman -S --noconfirm --needed noto-fonts-emoji
 sudo pacman -S --noconfirm --needed arandr
 sudo pacman -S --noconfirm --needed breeze-icons
 sudo pacman -S --noconfirm --needed bash-completion
+sudo pacman -S --noconfirm --needed flameshot
 
 #Installerar YAY
 clear
