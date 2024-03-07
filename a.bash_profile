@@ -5,15 +5,16 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 #standard ljudutgång t.ex. "GoXLR System"
-Default="alsa_output.usb-TC-Helicon_GoXLRMini-00.HiFi__goxlr_stereo_out_GoXLRMini_0_0_1__sink"
+ Default="alsa_output.pci-0000_00_1f.3.analog-stereo"
 #Vill lyssna på t.ex. "GoXLR Stream Mix"
-Source="alsa_input.usb-TC-Helicon_GoXLRMini-00.HiFi__goxlr_stereo_in_GoXLRMini_0_0_1__source"
+ Source="alsa_input.usb-TC-Helicon_GoXLRMini-00.HiFi__Line4__source"
 #Vill höra ljudet på t.ex. "Hörlurar"
-Sink="alsa_output.usb-ASUS_ROG_Strix_Fusion_Wireless-00.iec958-stereo"
-# Ställer in ljudingång som lyssnar på en specifik källa
-pactl load-module module-loopback source="$Source" sink="$Sink"
-# ställer in standard ljudutgång
-pactl set-default-sink "$Default"
+ Sink="alsa_output.usb-ASUS_ROG_Strix_Fusion_Wireless-00.analog-stereo"
+#Ställer in ljudingång som lyssnar på en specifik källa
+ pactl load-module module-loopback source="$Source" sink="$Sink"
+#ställer in standard ljudutgång
+ pactl set-default-sink "$Default"
+
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 startx
