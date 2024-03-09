@@ -18,6 +18,6 @@ format = '[🐼]($style)'
 
 [directory]
 style = "bg:#d8dee9 fg:#b48ead bold"
-format = "[$path]($style)"
+format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
