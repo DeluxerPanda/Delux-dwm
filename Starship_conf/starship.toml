@@ -1,24 +1,23 @@
 format = """
-[](#3B4252)\
+[](#ebcb8b)\
 $username\
-[](bg:#434C5E fg:#3B4252)\
+[](bg:#d8dee9 fg:#ebcb8b)\
 $directory\
-[](fg:#434C5E bg:#4C566A)\
-[](fg:#33658A)\
+[](fg:#9C59D1 bg:#2e3440)\
+[](fg:#2e3440)\
 """
-command_timeout = 5000
+
 # Disable the blank line at the start of the prompt
-# add_newline = false
+add_newline = false
 
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#3B4252"
-style_root = "bg:#3B4252"
+style_user = "bg:#ebcb8b"
 format = '[🐼]($style)'
 
 [directory]
-style = "bg:#434C5E"
+style = "bg:#d8dee9 fg:#b48ead bold"
 format = "[$path]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
