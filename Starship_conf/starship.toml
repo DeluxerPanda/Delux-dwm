@@ -1,23 +1,27 @@
 format = """
-[](#ebcb8b)\
+[](#2C2C2C)\
 $username\
-[](bg:#d8dee9 fg:#ebcb8b)\
+[](bg:#2C2C2C fg:#2C2C2C)\
 $directory\
-[](fg:#9C59D1 bg:#2e3440)\
-[](fg:#2e3440)\
+[](fg:#2C2C2C bg:#FCF434)\
+[](fg:#FCF434 bg:#FFFFFF)\
+[](fg:#FFFFFF bg:#9C59D1)\
+[](fg:#9C59D1 bg:#2C2C2C)\
+[ ](fg:#2C2C2C)\
 """
-
+command_timeout = 5000
 # Disable the blank line at the start of the prompt
-add_newline = false
+# add_newline = false
 
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#ebcb8b"
+style_user = "bg:#2C2C2C"
+style_root = "bg:#2C2C2C"
 format = '[🐼]($style)'
 
 [directory]
-style = "bg:#d8dee9 fg:#b48ead bold"
+style = "bg:#2C2C2C"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
