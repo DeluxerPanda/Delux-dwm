@@ -96,6 +96,7 @@ for app in ".bashrc" ".xinitrc" ".bash_profile"; do
     mv "$app" ~/
     echo "Moving $app"
 done
+cd $work_dir
 
 sudo mkdir -p /usr/share/fonts/TTF
 sudo mv $work_dir/Fonts/JetBrainsMonoNLNerdFontMono-Regular.ttf /usr/share/fonts/TTF/
