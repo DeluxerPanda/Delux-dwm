@@ -100,6 +100,6 @@ cd $work_dir
 
 sudo mkdir -p /usr/share/fonts/TTF
 sudo mv $work_dir/Fonts/JetBrainsMonoNLNerdFontMono-Regular.ttf /usr/share/fonts/TTF/
-
+fc-cache
 #Starting DWM
 startx
