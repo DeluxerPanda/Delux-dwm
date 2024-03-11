@@ -36,7 +36,6 @@ echo -ne "
 alsa-utils, base-devel, firefox, dolphin, xcompmgr, neofetch, 
 noto-fonts-emoji, arandr, breeze-icons, bash-completion, flameshot
 2: installerar YAY
-3: installerar p7zip-gui
 4: installerar starship
 5: Fixar dwm, st, slstatus. Så dom funkar!
 6: Skapar mapp för bakgrundsbilder och flyttar dom till mappen!
@@ -106,24 +105,6 @@ cd $arbets_dir/yay
 makepkg -si --noconfirm
 cd $arbets_dir
 
-#Installerar p7zip-gui
-clear
-titel_message_length=${#titel_message}
-spaces=$(( (${#separator} - message_length) / 2 ))
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
-
-message="Installerar p7zip-gui"
-message_length=${#message}
-spaces=$(( (${#separator} - message_length) / 2 ))
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
-
-message2="p7zip-gui"
-message2_length=${#message2}
-spaces=$(( (${#separator} - message2_length) / 2 ))
- printf "%s%${spaces}s%s\n%s\n" "" "" "$message2" "$separator"
-
-yay -S --noconfirm p7zip-gui
-
 #installerar starship
 clear
 titel_message_length=${#titel_message}
@@ -172,7 +153,7 @@ spaces=$(( (${#separator} - message2_length) / 2 ))
  printf "%s%${spaces}s%s\n%s\n" "" "" "$message2" "$separator"
 
 mkdir -p ~/.config/suckless
-cd $arbets_dir/dwm_saker
+cd $arbets_dir/suckless
 for app in "dwm" "st" "slstatus"; do
     sudo mv "$app" ~/.config/suckless
     echo "Moving $app"
