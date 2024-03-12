@@ -110,6 +110,9 @@ alias ll='ls -a -l'
 # Alias's for clear
 alias clr='clear' 
 
+#Bat Cat
+alias cat='bat'
+
 # Install Starship - curl -sS https://starship.rs/install.sh | sh
 
 eval "$(starship init bash)"
