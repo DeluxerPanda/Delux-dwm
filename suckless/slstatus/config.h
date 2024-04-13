@@ -64,12 +64,12 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-        {disk_free, "| %s", "/"},
-        {disk_total, " / %s", "/"},
+//        {disk_free, "| %s", "/"},
+//        {disk_total, " / %s", "/"},
 //      { run_command, " | :%4s","amixer sget Master | awk -F\"[][]>
-        { cpu_perc, " | : %s%%", NULL},
-        { ram_perc, " | : %s%%", NULL},
+        { cpu_perc, " [ : %s%%", NULL},
+        { ram_perc, " ] [ : %s%%", NULL},
 //      { battery_perc, " |  %s%%","BAT0"},
-        { datetime, " | %s","%F | %T |"},
+        { datetime, " ] %s","%F | %T |"},
 };
 

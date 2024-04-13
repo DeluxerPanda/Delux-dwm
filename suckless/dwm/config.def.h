@@ -11,8 +11,8 @@ static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "JetBrainsMonoNL Nerd Font Mono:size=15", "JoyPixels:pixelsize=15:antialias=true:autohint=true" };
-static const char dmenufont[]       = "JetBrainsMonoNL Nerd Font Mono:size=15";
+static const char *fonts[]          = { "JetBrainsMonoNL Nerd Font Mono:size=16", "JoyPixels:pixelsize=16:antialias=true:autohint=true" };
+static const char dmenufont[]       = "JetBrainsMonoNL Nerd Font Mono:size=16";
 static const char col_gray1[]       = "#5F4F72";
 static const char col_gray2[]       = "#292045";
 static const char col_gray3[]       = "#E1DAE9";
@@ -32,6 +32,7 @@ static const char *const autostart[] = {
   "flameshot", NULL,
   "goxlr-launcher", NULL,
   "xwallpaper", "--zoom", "/home/deluxerpanda/Bilder/Wallpapers/Wallpaper1.png", NULL,
+  "slstatus",  
   NULL /* terminate */
 };
 
@@ -40,9 +41,9 @@ static const char *tags[] = { "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "st",       "st",       NULL,       0,            0,           -1 },
-	{ "Firefox",  "Firefox",       NULL,       1,            0,           -1 },
-	{ "Steam",    NULL,       NULL,       4,            0,           -1 },
+    { NULL,       "St",     NULL,       0,            0,           -1 },
+    { "Mozilla Firefox", NULL, NULL,       1,            0,           -1 },
+	{ NULL, "Steam",NULL,     4,            0,           -1 },
 };
 
 /* layout(s) */
