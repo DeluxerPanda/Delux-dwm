@@ -32,7 +32,7 @@ message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
 printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 echo -ne "
-1: installing: xorg, xinit, xwallpaper, xcompmgr, arandr, flameshot, rofi
+1: installing: xorg, xinit, xwallpaper, xcompmgr, arandr, flameshot, rofi, bat cat
 4: installing starship
 5: Fixing dwm, st, slstatus. Så dom funkar!
 6: Creates folder for background images and moves them to the folder!
@@ -55,6 +55,7 @@ sudo pacman -S --noconfirm --needed xcompmgr
 sudo pacman -S --noconfirm --needed arandr
 sudo pacman -S --noconfirm --needed flameshot
 sudo pacman -S --noconfirm --needed rofi
+sudo pacman -S --noconfirm --needed bat
 
 cd $work_dir
 
