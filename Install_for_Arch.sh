@@ -64,7 +64,27 @@ sudo pacman -S --noconfirm --needed bat
 clear
 sudo pacman -S --noconfirm --needed pavucontrol
 clear
-
+sudo pacman -S --noconfirm --needed libx11
+sudo pacman -S --noconfirm --needed libx11-xcb
+sudo pacman -S --noconfirm --needed libXext
+sudo pacman -S --noconfirm --needed xproto
+sudo pacman -S --noconfirm --needed xcb
+sudo pacman -S --noconfirm --needed xcb-util
+sudo pacman -S --noconfirm --needed xcb-damage
+sudo pacman -S --noconfirm --needed xcb-dpms
+sudo pacman -S --noconfirm --needed xcb-xfixes
+sudo pacman -S --noconfirm --needed xcb-shape
+sudo pacman -S --noconfirm --needed xcb-renderutil
+sudo pacman -S --noconfirm --needed xcb-render
+sudo pacman -S --noconfirm --needed xcb-randr
+sudo pacman -S --noconfirm --needed xcb-composite
+sudo pacman -S --noconfirm --needed xcb-image
+sudo pacman -S --noconfirm --needed xcb-present
+sudo pacman -S --noconfirm --needed xcb-glx
+sudo pacman -S --noconfirm --needed pixman
+clear
+sudo pacman -S --noconfirm --needed pavucontrol
+clear
 #
 picom_animations() {
     # Clone the repository in the home/build directory
