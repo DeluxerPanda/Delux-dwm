@@ -102,27 +102,6 @@ picom_animations() {
     echo "Picom animations installed successfully"
 }
 
-clone_config_folders() {
-    # Ensure the target directory exists
-    [ ! -d ~/.config ] && mkdir -p ~/.config
-
-    # Iterate over all directories in config/*
-    for dir in config/*/; do
-        # Extract the directory name
-        dir_name=$(basename "$dir")
-
-        # Clone the directory to ~/.config/
-        if [ -d "$dir" ]; then
-            cp -r "$dir" ~/.config/
-            echo "Cloned $dir_name to ~/.config/"
-        else
-            echo "Directory $dir_name does not exist, skipping"
-        fi
-    done
-}
-
-clone_config_folders
-
 picom_animations
 
 cd $work_dir
