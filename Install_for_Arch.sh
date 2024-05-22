@@ -32,7 +32,7 @@ message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
 printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 echo -ne "
-1: installing: xorg, xinit, xwallpaper, xcompmgr, arandr, flameshot, rofi, bat cat, pavucontrol
+1: installing: xorg, xinit, xwallpaper, picom, arandr, flameshot, rofi, bat cat, pavucontrol
 4: installing starship
 5: Fixing dwm, st, slstatus. Så dom funkar!
 6: Creates folder for background images and moves them to the folder!
@@ -64,26 +64,8 @@ sudo pacman -S --noconfirm --needed bat
 clear
 sudo pacman -S --noconfirm --needed pavucontrol
 clear
-sudo pacman -S --noconfirm --needed libx11
-sudo pacman -S --noconfirm --needed libx11-xcb
-sudo pacman -S --noconfirm --needed libXext
-sudo pacman -S --noconfirm --needed xproto
-sudo pacman -S --noconfirm --needed xcb
-sudo pacman -S --noconfirm --needed xcb-util
-sudo pacman -S --noconfirm --needed xcb-damage
-sudo pacman -S --noconfirm --needed xcb-dpms
-sudo pacman -S --noconfirm --needed xcb-xfixes
-sudo pacman -S --noconfirm --needed xcb-shape
-sudo pacman -S --noconfirm --needed xcb-renderutil
-sudo pacman -S --noconfirm --needed xcb-render
-sudo pacman -S --noconfirm --needed xcb-randr
-sudo pacman -S --noconfirm --needed xcb-composite
-sudo pacman -S --noconfirm --needed xcb-image
-sudo pacman -S --noconfirm --needed xcb-present
-sudo pacman -S --noconfirm --needed xcb-glx
-sudo pacman -S --noconfirm --needed pixman
-clear
-sudo pacman -S --noconfirm --needed pavucontrol
+#picom Dependencis
+sudo pacman -S --noconfirm base-devel libconfig dbus libev libx11 libxcb libxext libgl libegl libepoxy meson pcre2 pixman uthash xcb-util-image xcb-util-renderutil xorgproto cmake
 clear
 #
 picom_animations() {
