@@ -32,6 +32,7 @@ static const char *const autostart[] = {
   "flameshot", NULL,
   "goxlr-launcher", NULL,
   "xwallpaper", "--zoom", "/home/deluxerpanda/Bilder/Wallpapers/Wallpaper1.png", NULL,
+  "picom" ,"--animations", "-b", NULL,
   "slstatus",  
   NULL /* terminate */
 };
