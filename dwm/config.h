@@ -35,10 +35,9 @@ static const char *const autostart[] = {
   "xset", "s", "noblank", NULL,
   "xset", "-dpms", NULL,
   "flameshot", NULL,
-  "dunst", NULL,
   "picom", "--animations", "-b", NULL,
-  "sh", "-c", "feh --randomize --bg-fill $HOME/Bilder/backgrounds/*", NULL,
-  "synergy", NULL,
+  "sh", "-c", "feh --randomize --bg-fill /home/deluxerpanda/Bilder/backgrounds/*", NULL,
+  "bash", "/home/deluxerpanda/.screenlayout/Default.sh", NULL,
   "slstatus", NULL,
   NULL /* terminate */
 };
@@ -93,10 +92,17 @@ static Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_r,          spawn,                  {.v = launchercmd} }, // spawn rofi for launching other programs
 	{ MODKEY,                       XK_x,          spawn,                  {.v = termcmd } }, // spawn a terminal
+	{ MODKEY,                       XK_b,          spawn,                  SHCMD ("xdg-open https://")}, // open default browsers
+	{ MODKEY,                       XK_e,          spawn,                  SHCMD ("thunar")}, // open thunar file manager
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD ("looking-glass-client -F")}, // start Looking glass
+	{ 0,                            0x1008ff11,    spawn,                  SHCMD ("amixer sset Master 5%- unmute")}, // unmute volume
+	{ 0,                            0x1008ff12,    spawn,                  SHCMD ("amixer sset Master $(amixer get Master | grep -q '\\[on\\]' && echo 'mute' || echo 'unmute')")}, // toggle mute/unmute
+	{ 0,                            0x1008ff13,    spawn,                  SHCMD ("amixer sset Master 5%+ unmute")}, // unmute volume
 	{ MODKEY|ShiftMask,             XK_b,          togglebar,              {0} }, // toggle bar visibility
+	{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } }, // focus on the next client in the stack
 	{ MODKEY,                       XK_k,          focusstack,             {.i = -1 } }, // focus on the previous client in the stack
-    { MODKEY,                       XK_j,          zoom,                   {0} }, // moves the currently focused window to/from the master area (for tiled layouts)
+	{ MODKEY|ShiftMask,             XK_j,          movestack,              {.i = +1 } }, // move stack up
+	{ MODKEY|ShiftMask,             XK_k,          movestack,              {.i = -1 } }, // move stack down
 	{ MODKEY,                       XK_i,          incnmaster,             {.i = +1 } }, // decrease the number of clients in the master area
 	{ MODKEY,                       XK_d,          incnmaster,             {.i = -1 } }, // increase the number of clients in the master area
 	{ MODKEY,                       XK_h,          setmfact,               {.f = -0.05} }, // decrease the size of the master area compared to the stack area(s)
@@ -104,11 +110,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,          setcfact,               {.f = +0.25} }, // increase size respective to other windows within the same area
 	{ MODKEY|ShiftMask,             XK_l,          setcfact,               {.f = -0.25} }, // decrease client size respective to other windows within the same area
 	{ MODKEY|ShiftMask,             XK_o,          setcfact,               {.f =  0.00} }, // reset client area
-	{ MODKEY,                       XK_Tab,        focusstack,             {.i = +1 } },
+	{ MODKEY,                       XK_Return,     zoom,                   {0} }, // moves the currently focused window to/from the master area (for tiled layouts)
+	{ MODKEY,                       XK_Tab,        view,                   {0} }, // view last focused tag
 	{ MODKEY,                       XK_q,          killclient,             {0} }, // close the currently focused window
 	{ MODKEY,                       XK_t,          setlayout,              {.v = &layouts[0]} }, // set tile layout
 	{ MODKEY,                       XK_f,          setlayout,              {.v = &layouts[1]} }, // set floating layout
 	{ MODKEY,                       XK_m,          fullscreen,             {0} }, // toggles fullscreen for the currently selected client
+	//{ MODKEY,                       XK_space,      setlayout,              {-1} }, // toggles between current and previous layout
 	{ MODKEY|ShiftMask,             XK_m,          togglefloating,         {0} }, // toggles between tiled and floating arrangement for the currently focused client
 	{ MODKEY|ShiftMask,             XK_y,          togglefakefullscreen,   {0} }, // toggles "fake" fullscreen for the selected window
 	{ MODKEY,                       XK_0,          view,                   {.ui = ~0 } }, // view all tags on the current monitor
