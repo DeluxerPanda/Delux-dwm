@@ -95,7 +95,7 @@ command_exists() {
       if [ -s /etc/pacman.d/mirrorlist ]; then
           sudo cp -r /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
       fi
-      
+      echo "checking out mirrors..."
       sudo rate-mirrors --top-mirrors-number-to-retest=5 --disable-comments --save /etc/pacman.d/mirrorlist --allow-root arch
 
 #Updating system
