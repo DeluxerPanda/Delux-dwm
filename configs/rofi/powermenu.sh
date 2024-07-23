@@ -21,7 +21,7 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$shutdown\n$shutdown\n$close" | rofi_cmd
+	echo -e "$shutdown\n$reboot\n$close" | rofi_cmd
 }
 
 # Execute Command
