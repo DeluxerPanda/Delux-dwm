@@ -93,8 +93,8 @@ textbox {
 listview {
     enabled:                     true;
     expand:                      false;
-    columns:                     5;
-    lines:                       1;
+    columns:                     1;
+    lines:                       3;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;

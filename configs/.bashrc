@@ -6,8 +6,6 @@ iatest=$(expr index "$-" i)
 #######################################################
 if [ -f /usr/bin/fastfetch ]; then
 	fastfetch
-	else
-	
 fi
 
 # Source global definitions

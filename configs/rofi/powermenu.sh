@@ -9,6 +9,7 @@ uptime="`uptime -p | sed -e 's/up //g'`"
 # Options
 shutdown='󰐥'
 reboot='󰜉'
+close='close'
 
 # Rofi CMD
 rofi_cmd() {
@@ -20,7 +21,7 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$shutdown\n$reboot" | rofi_cmd
+	echo -e "$shutdown\n$shutdown\n$close" | rofi_cmd
 }
 
 # Execute Command
@@ -31,6 +32,9 @@ run_cmd() {
 			;;
 		--reboot)
 			systemctl reboot
+			;;
+		--close)
+			exit
 			;;
 	esac
 }
