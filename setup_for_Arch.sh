@@ -59,7 +59,7 @@ fi
 if [ -z "$work_dir" ]; then
     work_dir=$(pwd)
 fi
-
+sudo pacman -Sy
 #Installing: AUR helper and Rate mirrors
 printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
 
@@ -72,8 +72,6 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 command_exists() {
     which $1 >/dev/null 2>&1
 }
-
-sudo pacman -Sy
 
             if ! command_exists yay && ! command_exists paru; then
         echo "Installing yay as AUR helper..."
