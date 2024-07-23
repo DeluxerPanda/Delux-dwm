@@ -188,13 +188,13 @@ fi
         cp -r "~/.config/rofi" "~/.config/rofi.bak"
     fi
     mkdir -p "~/.config/rofi"
-    cp -r "~/.config/rofi/powermenu.sh" $work_dir/configs/rofi/powermenu.sh
+    cp -r "$work_dir/configs/rofi/powermenu.sh" "~/.config/rofi/powermenu.sh"
     chmod +x "~/.config/rofi/powermenu.sh"
-    cp -r "~/.config/rofi/config.rasi" $work_dir/configs/rofi/config.rasi
+    cp -r "$work_dir/configs/rofi/config.rasi" "~/.config/rofi/config.rasi"
     mkdir -p "~/.config/rofi/themes"
-    cp -r "~/.config/rofi/themes/nord.rasi" $work_dir/configs/rofi/themes/nord.rasi
-    cp -r "~/.config/rofi/themes/sidetab-nord.rasi" $work_dir/configs/rofi/themes/sidetab-nord.rasi
-    cp -r "~/.config/rofi/themes/powermenu.rasi" $work_dir/configs/rofi/powermenu.rasi
+    cp -r "$work_dir/configs/rofi/themes/nord.rasi" "~/.config/rofi/themes/nord.rasi" 
+    cp -r "$work_dir/configs/rofi/themes/sidetab-nord.rasi" "~/.config/rofi/themes/sidetab-nord.rasi"
+    cp -r "$work_dir/configs/rofi/powermenu.rasi" "~/.config/rofi/themes/powermenu.rasi"
 
 
 
