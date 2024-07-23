@@ -89,7 +89,9 @@ command_exists() {
           echo "No AUR helper found. Please install yay or paru."
           exit 1
       fi
+      if ! command_exists rate-mirrors; then
       ${AUR_HELPER} --noconfirm -S rate-mirrors-bin
+        fi
       if [ -s /etc/pacman.d/mirrorlist ]; then
           sudo cp -r /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
       fi
