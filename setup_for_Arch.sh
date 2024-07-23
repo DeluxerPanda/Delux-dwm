@@ -175,16 +175,18 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 
 if [ -s ~/.config/starship.toml ]; then
      cp -r ~/.config/starship.toml ~/.config/starship.toml.bak
-fi
-     cp -r $work_dir/configs/starship.toml ~/.config/
-    echo "Moving starship.toml"
+     else
     curl -sS https://starship.rs/install.sh | sh -s -- --yes
-
     echo "starship installed successfully"
+fi
+     cp -r $work_dir/configs/starship.toml ~/.config/starship.toml
+    echo "Moving starship.toml"
+
+
 
 
     echo "Copy Rofi config files"
-    if [ -s ~/.config/rofi ]; then
+    if [ -d ~/.config/rofi ]; then
         cp -r "~/.config/rofi" "~/.config/rofi.bak"
     fi
     mkdir -p "~/.config/rofi"
@@ -219,10 +221,10 @@ done
 
 for app in ".bashrc" ".bash_profile"; do
   if [ -s ~/$app ]; then
-   sudo cp -r ~/$app ~/$app.bak
+    cp -r ~/$app ~/$app.bak
  fi
      echo "Moving $app"
-    mv $work_dir/configs/"$app" ~/
+    cp -r $work_dir/configs/"$app" ~/
 done
 
 #moving fonts
