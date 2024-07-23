@@ -182,7 +182,7 @@ fi
 
 
     echo "Copy Rofi config files"
-    if [ -d "~/.config/rofi" ]; then
+    if [ -s "~/.config/rofi" ]; then
         cp -r "~/.config/rofi" "~/.config/rofi.bak"
     fi
     mkdir -p "~/.config/rofi"
