@@ -196,7 +196,7 @@ fi
     mkdir -p "~/.config/rofi/themes"
     cp -r "$work_dir/configs/rofi/themes/nord.rasi" "~/.config/rofi/themes/nord.rasi" 
     cp -r "$work_dir/configs/rofi/themes/sidetab-nord.rasi" "~/.config/rofi/themes/sidetab-nord.rasi"
-    cp -r "$work_dir/configs/rofi/powermenu.rasi" "~/.config/rofi/themes/powermenu.rasi"
+    cp -r "$work_dir/configs/rofi/themes/powermenu.rasi" "~/.config/rofi/themes/powermenu.rasi"
 
 
 
