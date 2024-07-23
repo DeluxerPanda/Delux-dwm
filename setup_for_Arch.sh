@@ -43,15 +43,22 @@ while true; do
 
 read -p "Do you want to run this script? (y/n) " yn
 
-case $yn in 
-	[yY] ) echo ok, we will proceed;
-		break;;
-	[nN] ) echo exiting...;
-		exit;;
-	* ) echo invalid response;;
+case $yn in
+	[yY] | [jJ] | [sS][oO] | [yY][eE][sS] | [jJ][aA] )
+		echo "ok, we will proceed"
+		break
+		;;
+	[nN] | [nN][oO] | [nN][eE][iI][nN] )
+		echo "exiting..."
+		exit
+		;;
+	* )
+		echo "invalid response"
+		;;
 esac
 
 done
+
 fi
 
 
@@ -61,8 +68,6 @@ if [ -z "$work_dir" ]; then
 fi
 sudo pacman -Sy
 #Installing: AUR helper and Rate mirrors
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
-
 message="Installing: AUR helper and Rate mirrors"
 message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
@@ -99,9 +104,6 @@ command_exists() {
       sudo rate-mirrors --top-mirrors-number-to-retest=5 --disable-comments --save /etc/pacman.d/mirrorlist --allow-root arch
 
 #Updating system
-
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
-
 message="Updating system"
 message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
@@ -111,8 +113,6 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 sudo pacman -Syu --noconfirm
 
 #Installing dependencies
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
-
 message="Installing dependencies"
 message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
@@ -124,8 +124,6 @@ sudo pacman -S --noconfirm base-devel libx11 libxinerama libxft imlib2 hicolor-i
 
 
 #Installing picom animations
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
-
 message="Installing picom animations"
 message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
@@ -165,8 +163,6 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
     echo "Picom animations installed successfully"
 
 #Installing starship
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
-
 message="Installing starship"
 message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
@@ -187,22 +183,20 @@ fi
 
     echo "Copy Rofi config files"
     if [ -d ~/.config/rofi/ ]; then
-        cp -r "~/.config/rofi" "~/.config/rofi.bak"
+        cp -r ~/.config/rofi ~/.config/rofi.bak
     fi
-    mkdir -p "~/.config/rofi"
-    cp -r "$work_dir/configs/rofi/powermenu.sh" "~/.config/rofi/powermenu.sh"
-    chmod +x "~/.config/rofi/powermenu.sh"
-    cp -r "$work_dir/configs/rofi/config.rasi" "~/.config/rofi/config.rasi"
-    mkdir -p "~/.config/rofi/themes"
-    cp -r "$work_dir/configs/rofi/themes/nord.rasi" "~/.config/rofi/themes/nord.rasi" 
-    cp -r "$work_dir/configs/rofi/themes/sidetab-nord.rasi" "~/.config/rofi/themes/sidetab-nord.rasi"
-    cp -r "$work_dir/configs/rofi/themes/powermenu.rasi" "~/.config/rofi/themes/powermenu.rasi"
+    mkdir -p ~/.config/rofi
+    cp -r $work_dir/configs/rofi/powermenu.sh ~/.config/rofi/powermenu.sh
+    chmod +x ~/.config/rofi/powermenu.sh
+    cp -r $work_dir/configs/rofi/config.rasi ~/.config/rofi/config.rasi
+    mkdir -p ~/.config/rofi/themes
+    cp -r $work_dir/configs/rofi/themes/nord.rasi ~/.config/rofi/themes/nord.rasi
+    cp -r $work_dir/configs/rofi/themes/sidetab-nord.rasi ~/.config/rofi/themes/sidetab-nord.rasi
+    cp -r $work_dir/configs/rofi/themes/powermenu.rasi ~/.config/rofi/themes/powermenu.rasi
 
 
 
 #Installing dwm, slstatus
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
-
 message="Installing dwm, slstatus"
 message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
@@ -234,8 +228,6 @@ sudo cp -r $work_dir/Fonts/JetBrainsMonoNLNerdFontMono-Regular.ttf /usr/share/fo
 fc-cache
 
 cd $work_dir
-
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$titel_message" ""
 
 message="The script is done"
 message_length=${#message}
