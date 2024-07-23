@@ -1,6 +1,6 @@
 ## Install
 ```
-git clone https://github.com/DeluxerPanda/Delux_dwm.git
+git clone https://github.com/DeluxerPanda/Delux-dwm.git
 
 cd Delux_dwm
 
