@@ -93,7 +93,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,          spawn,                  {.v = launchercmd} }, // spawn rofi for launching other programs
 	{ MODKEY,                       XK_x,          spawn,                  {.v = termcmd } }, // spawn a terminal
 	{ MODKEY,                       XK_b,          spawn,                  SHCMD ("xdg-open https://")}, // open default browsers
-	{ MODKEY,                       XK_e,          spawn,                  SHCMD ("thunar")}, // open thunar file manager
+	{ MODKEY,                       XK_e,          spawn,                  SHCMD ("dolphin")}, // open dolphin file manager
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD ("looking-glass-client -F")}, // start Looking glass
 	{ 0,                            0x1008ff11,    spawn,                  SHCMD ("amixer sset Master 5%- unmute")}, // unmute volume
 	{ 0,                            0x1008ff12,    spawn,                  SHCMD ("amixer sset Master $(amixer get Master | grep -q '\\[on\\]' && echo 'mute' || echo 'unmute')")}, // toggle mute/unmute

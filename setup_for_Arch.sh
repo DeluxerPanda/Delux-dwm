@@ -31,11 +31,12 @@ message_length=${#message}
 spaces=$(( (${#separator} - message_length) / 2 ))
 printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 echo -ne "
- 1. Installing: AUR helper and Rate mirrors
- 2. Updating system
- 3: Installing dependencies
- 2: Installing picom animations
- 5: Installing dwm, slstatus.
+ 1. Install AUR helper and rate mirrors.
+ 2. Update the system.
+ 3. Install dependencies.
+ 4. Install Picom animations.
+ 5. Install DWM and Slstatus.
+ 6. Ask the user if they want to move 20-amdgpu.conf to /etc/X11/xorg.conf.d/.
 "
 printf "%s\n%${spaces}s%s\n%s\n" "$separator"
 
@@ -229,7 +230,34 @@ fc-cache
 
 cd $work_dir
 
-message="The script is done"
-message_length=${#message}
-spaces=$(( (${#separator} - message_length) / 2 ))
-printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
+while true; do
+
+read -p "Do you want to move 20-amdgpu.conf to /etc/X11/xorg.conf.d/ (y/n) " yn
+
+case $yn in
+	[yY] | [jJ] | [sS][oO] | [yY][eE][sS] | [jJ][aA] )
+		echo "Moving 20-amdgpu.conf to /etc/X11/xorg.conf.d/"
+		sudo cp -r $work_dir/configs/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
+		break
+		;;
+	[nN] | [nN][oO] | [nN][eE][iI][nN] )
+		message="The script is done"
+        message_length=${#message}
+        spaces=$(( (${#separator} - message_length) / 2 ))
+        printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
+		exit
+		;;
+	* )
+		echo "invalid response"
+		;;
+esac
+
+done
+
+		message="The script is done"
+        message_length=${#message}
+        spaces=$(( (${#separator} - message_length) / 2 ))
+        printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
+
+
+
