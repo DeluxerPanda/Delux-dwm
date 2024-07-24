@@ -104,7 +104,6 @@ static Key keys[] = {
 	{ MODKEY,         XK_d,       incnmaster,         {.i = -1 } }, // increase the number of clients in the master area
 	{ MODKEY,         XK_h,         setmfact,         {.f = -0.05} }, // decrease the size of the master area compared to the stack area(s)
 	{ MODKEY,         XK_l,          setmfact,               {.f = +0.05} }, // increase the size of the master area compared to the stack area(s)
-	{ MODKEY,         XK_j ,          zoom,         {0} }, // moves the currently focused window to/from the master area (for tiled layouts)
 	{ MODKEY,         XK_q,         killclient,         {0} }, // close the currently focused window
 	{ MODKEY,         XK_t,          setlayout,         {.v = &layouts[0]} }, // set tile layout
     { MODKEY,         XK_Tab,    zoom,               {0} }, // moves the currently focused window to/from the master area (for tiled layouts)
