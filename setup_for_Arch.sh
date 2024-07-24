@@ -79,23 +79,27 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 command_exists() {
     which $1 >/dev/null 2>&1
 }
+RC='\033[0m'
+RED='\033[31m'
 
             if ! command_exists yay && ! command_exists paru; then
-        echo "Installing yay as AUR helper..."
-          sudo ${PACKAGER} --noconfirm -S base-devel || { echo -e "${RED}Failed to install base-devel${RC}"; exit 1; }
-          cd /opt && sudo git clone https://aur.archlinux.org/yay-git.git && sudo chown -R ${USER}:${USER} ./yay-git
-          cd yay-git && makepkg --noconfirm -si || { echo -e "${RED}Failed to install yay${RC}"; exit 1; }
-      else
-          echo "Aur helper already installed"
-      fi
-      if command_exists yay; then
-          AUR_HELPER="yay"
-      elif command_exists paru; then
-          AUR_HELPER="paru"
-      else
-          echo "No AUR helper found. Please install yay or paru."
-          exit 1
-      fi
+                echo "Installing yay as AUR helper..."
+                sudo pacman --noconfirm -S base-devel
+                cd /opt && sudo git clone https://aur.archlinux.org/yay-git.git && sudo chown -R "$USER":"$USER" ./yay-git
+                cd yay-git && makepkg --noconfirm -si
+            else
+                echo "Aur helper already installed"
+            fi
+            if command_exists yay; then
+                AUR_HELPER="yay"
+            elif command_exists paru; then
+                AUR_HELPER="paru"
+            else
+                echo "No AUR helper found. Please install yay or paru."
+                exit 1
+            fi
+            "$AUR_HELPER" --noconfirm -S "$DEPENDENCIES"
+
       if ! command_exists rate-mirrors; then
       ${AUR_HELPER} --noconfirm -S rate-mirrors-bin
         fi
