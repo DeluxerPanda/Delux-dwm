@@ -34,9 +34,10 @@ echo -ne "
  1. Install AUR helper and rate mirrors.
  2. Update the system.
  3. Install dependencies.
- 4. Install Picom animations.
- 5. Install DWM and Slstatus.
- 6. Ask the user if they want to move 20-amdgpu.conf to /etc/X11/xorg.conf.d/.
+ 4. Ask the user if they want kitty, dolphin, fastfetch, qt6ct, kvantum, rofi, firefox, ark, btop, pavucontrol
+ 5. Install Picom animations.
+ 6. Install DWM and Slstatus.
+ 7. Ask the user if they want to move 20-amdgpu.conf to /etc/X11/xorg.conf.d/.
 "
 printf "%s\n%${spaces}s%s\n%s\n" "$separator"
 
@@ -123,6 +124,35 @@ printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 
 sudo pacman -S --noconfirm base-devel libx11 libxinerama libxft imlib2 hicolor-icon-theme libconfig dbus libepoxy libev libglvnd libxcb libxext pcre2 pixman xcb-util-image xcb-util-renderutil asciidoc mesa meson uthash xorgproto python xorg-xprop xorg-xwininfo 
 
+
+message="Installing kitty, dolphin, fastfetch, qt6ct, kvantum rofi, firefox, ark, btop, pavucontrol"
+message_length=${#message}
+spaces=$(( (${#separator} - message_length) / 2 ))
+
+printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
+
+while true; do
+
+read -p "Do you want to install? (y/n) " yn
+
+case $yn in
+	[yY] | [jJ] | [sS][oO] | [yY][eE][sS] | [jJ][aA] )
+		echo "ok, we will proceed"
+		sudo pacman -S --noconfirm kitty dolphin fastfetch qt6ct kvantum rofi firefox ark btop pavucontrol
+		break
+		;;
+	[nN] | [nN][oO] | [nN][eE][iI][nN] )
+		echo "Oki"
+		break
+		;;
+	* )
+		echo "invalid response"
+		;;
+esac
+
+done
+
+echo 'QT_QPA_PLATFORMTHEME=qt6ct' | sudo tee -a /etc/environment
 
 #Installing picom animations
 message="Installing picom animations"
