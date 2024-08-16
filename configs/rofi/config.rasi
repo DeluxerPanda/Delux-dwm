@@ -1,10 +1,11 @@
-/** Basic config file **/
-
-configuration {
-  show-icons: true;
-  icon-theme: "Papirus";
-  display-drun: "";
-  display-window: "﩯 ";
-  display-combi: "  ";
+configuration{
+    modi: "drun";
+    icon-theme: "Numix";
+    show-icons: true;
+    terminal: "st";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
 }
-@theme "themes/sidetab-nord.rasi"
+@theme "catppuccin-mocha.rasi"

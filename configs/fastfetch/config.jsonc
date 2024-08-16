@@ -6,7 +6,7 @@
   },
   "display": {
      "separator": " 󱦰 ",
-     "color": "magenta"
+     "color": "green"
   },
   "modules": [
         {
@@ -14,17 +14,13 @@
             "format": "┏━━━━━━━━━━━━━ \u001b[1mHardware Information\u001b[0m ━━━━━━━━━━━━━┓"
         },
         {
-            "type": "host",
-            "key": "  "
-        },
-        {
             "type": "cpu",
             "key": "  "
         },
         {
             "type": "gpu",
-            "key": "  ",
-            "detectionMethod": "pci"
+            "detectionMethod": "pci",
+            "key": "  "
         },
         {
             "type": "disk",
@@ -33,11 +29,6 @@
         {
             "type": "custom", // SoftwareStart
             "format": "┣━━━━━━━━━━━━━ \u001b[1mSoftware Information\u001b[0m ━━━━━━━━━━━━━┫"
-        },
-        {
-            "type": "title",
-            "key": "  ",
-            "format": "{1}@{2}"
         },
         {
             "type": "os",

@@ -68,7 +68,7 @@ fi
 if [ -z "$work_dir" ]; then
     work_dir=$(pwd)
 fi
-sudo pacman -Sy
+
 #Installing: AUR helper and Rate mirrors
 message="Installing: AUR helper and Rate mirrors"
 message_length=${#message}
@@ -98,7 +98,6 @@ RED='\033[31m'
                 echo "No AUR helper found. Please install yay or paru."
                 exit 1
             fi
-            "$AUR_HELPER" --noconfirm -S "$DEPENDENCIES"
 
       if ! command_exists rate-mirrors; then
       ${AUR_HELPER} --noconfirm -S rate-mirrors-bin
@@ -225,9 +224,16 @@ fi
     chmod +x ~/.config/rofi/powermenu.sh
     cp -r $work_dir/configs/rofi/config.rasi ~/.config/rofi/config.rasi
     mkdir -p ~/.config/rofi/themes
-    cp -r $work_dir/configs/rofi/themes/nord.rasi ~/.config/rofi/themes/nord.rasi
-    cp -r $work_dir/configs/rofi/themes/sidetab-nord.rasi ~/.config/rofi/themes/sidetab-nord.rasi
+    cp -r $work_dir/configs/rofi/themes/catppuccin-mocha.rasi ~/.config/rofi/themes/catppuccin-mocha.rasi
     cp -r $work_dir/configs/rofi/themes/powermenu.rasi ~/.config/rofi/themes/powermenu.rasi
+
+
+    echo "Copy fastfetch config file"
+    if [ -d ~/.config/fastfetch/ ]; then
+        cp -r ~/.config/fastfetch ~/.config/fastfetch.bak
+    fi
+    cp -r $work_dir/configs/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
+    cp -r $work_dir/configs/fastfetch/logo.png ~/.config/fastfetch/logo.png
 
 
 
