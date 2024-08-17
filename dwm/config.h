@@ -39,11 +39,11 @@ static const char *const autostart[] = {
 	"xset", "s", "off", NULL,
 	"xset", "s", "noblank", NULL,
 	"xset", "-dpms", NULL,
+	"bash", "/home/deluxerpanda/.screenlayout/default.sh", NULL,
 	"flameshot", NULL,
 	"goxlr-launcher", NULL,
 	"picom", "--animations", "-b", NULL,
-	"bash", "/home/deluxerpanda/.screenlayout/default.sh", NULL,
-	"sh", "-c", "feh --randomize --bg-fill $HOME/Bilder/backgrounds/*", NULL,
+	"sh", "-c", "feh --randomize --bg-fill /home/deluxerpanda/Bilder/backgrounds/*", NULL,
 	"slstatus", NULL,
 	NULL /* terminate */
 };
@@ -51,15 +51,17 @@ static const char *const autostart[] = {
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5" };
 
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "kitty",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "kitty",   NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "alacritty",   NULL,     NULL,       0,         0,          1,           0,        -1 },
+	{ "terminator",	 NULL,     NULL,       0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -78,6 +80,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask
+#define AltMask Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -110,6 +113,8 @@ static Key keys[] = {
 
 	{ MODKEY|ShiftMask,XK_b,  togglebar,     {0} },
 	{ MODKEY|ShiftMask,XK_Tab,tagmon,      {.i = +1 } },
+
+	{ MODKEY|AltMask,XK_s,         spawn,         SHCMD ("/home/deluxerpanda/.screenlayout/default.sh")},
 
 	{ MODKEY|ControlMask,XK_q,spawn,       SHCMD("$HOME/.config/rofi/powermenu.sh")},
 
