@@ -44,7 +44,7 @@ static const char *const autostart[] = {
 	"goxlr-launcher", NULL,
 	"chatterino", NULL,
 	"picom", "--animations", "-b", NULL,
-	"sh", "-c", "feh --randomize --bg-fill /home/deluxerpanda/Bilder/backgrounds/*", NULL,
+	"sh", "-c", "feh --randomize --bg-fill ~/Bilder/backgrounds/*", NULL,
 	"slstatus", NULL,
 	NULL /* terminate */
 };
