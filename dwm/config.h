@@ -36,12 +36,13 @@ static const unsigned int alphas[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"xset", "s", "off", NULL,
-	"xset", "s", "noblank", NULL,
-	"xset", "-dpms", NULL,
+    "xset", "s", "off", NULL,
+    "xset", "s", "noblank", NULL,
+    "xset", "-dpms", NULL,
 	"bash", "/home/deluxerpanda/.screenlayout/default.sh", NULL,
 	"flameshot", NULL,
 	"goxlr-launcher", NULL,
+	"chatterino", NULL,
 	"picom", "--animations", "-b", NULL,
 	"sh", "-c", "feh --randomize --bg-fill /home/deluxerpanda/Bilder/backgrounds/*", NULL,
 	"slstatus", NULL,
@@ -58,10 +59,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "kitty",   NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "alacritty",   NULL,     NULL,       0,         0,          1,           0,        -1 },
-	{ "terminator",	 NULL,     NULL,       0,         0,          1,           0,        -1 },
+	{ "chatterino",NULL,   NULL,           0,         0,          0,           0,        1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
