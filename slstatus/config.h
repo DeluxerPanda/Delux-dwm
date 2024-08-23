@@ -63,17 +63,10 @@ static const char unknown_str[] = "n/a";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
-
 static const struct arg args[] = {
-	/* function           format          argument */
-	/*
-	{ wifi_essid,         "  [ %s ] ",     "wlan0" },
-	{ battery_perc,       " 󱊣 [ %s%%",           "BAT0" },
-	{ battery_remaining,  " (%s) ]",            "BAT0" },
-	*/
-	{ cpu_perc, " [ %s%% ]", NULL},
-    { ram_perc, " [ %s%% ]", NULL},
-    { datetime, " %s","%F | %T |"},
-
+	/* function format          argument */
+	{ cpu_perc, "  %s%%", NULL },
+	{ ram_used, "  %s", NULL },	
+	{ ram_total, "/%s", NULL },	
+    { datetime, " | %s","%F %T "},
 };
-
