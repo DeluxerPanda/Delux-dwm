@@ -41,7 +41,8 @@
         },
         {
             "type": "packages",
-            "key": "  󰏖"
+            "key": "  󰏖",
+            "format": "{2} packages"
         },
         {
             "type": "de",
