@@ -49,11 +49,11 @@
 	{
 		uintmax_t total;
 
-		if (pscanf("/proc/meminfo", "MemTotal: %ju kB\n", &total)
-		    != 1)
+		if (pscanf("/proc/meminfo", "MemTotal: %ju kB\n", &total) != 1)
 			return NULL;
 
-		return fmt_human(total * 1024, 1024);
+		total = total / 1024 / 1024; // Convert to GiB and round down to nearest integer
+		return bprintf("%juG", total);
 	}
 
 	const char *
@@ -70,8 +70,8 @@
 		           &total, &free, &buffers, &buffers, &cached) != 5)
 			return NULL;
 
-		used = (total - free - buffers - cached);
-		return fmt_human(used * 1024, 1024);
+		used = (total - free - buffers - cached) / 1024 / 1024; // Convert to GiB and round down to nearest integer
+		return bprintf("%juG", used);
 	}
 #elif defined(__OpenBSD__)
 	#include <stdlib.h>
