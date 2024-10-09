@@ -98,7 +98,7 @@ static Key keys[] = {
 	{ MODKEY,         XK_r,           spawn,         {.v = dmenucmd} },
 	{ MODKEY,         XK_x,          spawn,         {.v = termcmd } },
 	{ MODKEY,         XK_b,          spawn,         SHCMD ("xdg-open https://")},
-	{ MODKEY,         XK_e,          spawn,         SHCMD ("dolphin")},
+	{ MODKEY,         XK_e,          spawn,         SHCMD ("xdg-open .")},
 	{ MODKEY,         XK_w,         spawn,         SHCMD ("looking-glass-client -F")},
 	{ MODKEY,         XK_h,          setmfact,      {.f = -0.05} },
 	{ MODKEY,         XK_l,           setmfact,      {.f = +0.05} },
@@ -118,8 +118,6 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,XK_q,spawn,       SHCMD("$HOME/.config/rofi/powermenu.sh")},
 
 	{ MODKEY|ControlMask|ShiftMask,XK_q,quit,{0} },
-	{ MODKEY|ControlMask|ShiftMask,XK_r,spawn,SHCMD("systemctl reboot")},
-	{ MODKEY|ControlMask|ShiftMask,XK_s,spawn,SHCMD("systemctl suspend")},
 
 	TAGKEYS(          XK_1,                               0)
 	TAGKEYS(          XK_2,                               1)
