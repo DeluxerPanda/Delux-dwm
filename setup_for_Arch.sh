@@ -76,13 +76,11 @@ done
     
     sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit bash-completion ttf-jetbrains-mono-nerd noto-fonts-emoji bat
     
-    sudo pacman -S --noconfirm fastfetch rofi btop picom starship feh ffmpeg pcmanfm arandr steam flatpak
+    sudo pacman -S --noconfirm fastfetch rofi btop picom starship feh ffmpeg streamlink pcmanfm arandr steam flatpak 
     
     flatpak install -y flathub org.prismlauncher.PrismLauncher
 
     flatpak install -y flathub com.chatterino.chatterino
-
-    flatpak install -y flathub io.github.shiftey.Desktop
 
     flatpak install -y flathub com.visualstudio.code
 
