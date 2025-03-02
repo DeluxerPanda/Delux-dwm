@@ -168,7 +168,7 @@ done
         sudo cp -r $work_dir/services/flatpak-update.service /etc/systemd/system/flatpak-update.service
 
         sudo systemctl daemon-reload
-        sudo systemctl enable --now flatpak-update.timer
+        sudo systemctl enable --now flatpak-update.service
         echo "Systemd service and timer set up successfully!"
 
 
