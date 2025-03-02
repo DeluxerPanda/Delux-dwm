@@ -99,7 +99,8 @@ done
 
     cp -r $work_dir/config/fastfetch/ ~/.config/fastfetch/
 
-
+    mkdir -p ~/build
+    cd ~/build
 
     #Installing dwm, slstatus
     message="Installing dwm, st, slstatus"
@@ -112,19 +113,26 @@ done
     git clone https://github.com/DeluxerPanda/dwm.git
     cd dwm
     sudo make clean install
-    cd $work_dir
+    cd ~/build
 
     rm -rf st
     git clone https://github.com/DeluxerPanda/st.git
     cd st
     sudo make clean install
-    cd $work_dir
+    cd ~/build
 
     rm -rf slstatus
     git clone https://github.com/DeluxerPanda/slstatus.git
     cd slstatus
     sudo make clean install
-    cd $work_dir
+    cd ~/build
+
+    rm -rf yay
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
+    makepkg -si
+    rm -rf yay
+    cd ~/build
 
 
     for app in ".bashrc" ".bash_profile"; do
