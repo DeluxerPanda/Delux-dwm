@@ -146,11 +146,13 @@ done
 
         # Write the override configuration
 
-	sudo bash -c "cat <<'EOF' > /etc/systemd/system/getty@tty1.service.d/override.conf
-	[Service]
-	ExecStart=
-	ExecStart=-/usr/bin/agetty --autologin $USERNAME --noclear %I \$TERM
-	EOF"
+
+sudo bash -c "cat <<'EOF' > /etc/systemd/system/getty@tty1.service.d/override.conf
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin $USERNAME --noclear %I \$TERM
+EOF"
+
 
 	
         sudo systemctl enable getty@tty1
