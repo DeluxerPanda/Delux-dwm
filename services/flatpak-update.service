@@ -3,9 +3,7 @@
 
         [Service]
         ExecStart=$(realpath "$0")
-        EOF"
 
-        sudo bash -c "cat > /etc/systemd/system/flatpak-update.timer <<EOF
         [Unit]
         Description=Run Flatpak Update Daily
 
