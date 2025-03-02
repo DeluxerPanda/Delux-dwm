@@ -82,13 +82,10 @@ done
 
     flatpak install -y flathub com.chatterino.chatterino
 
-    message="Installing starship"
-    message_length=${#message}
-    spaces=$(( (${#separator} - message_length) / 2 ))
-    
-    printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
-
      cp -r $work_dir/config/starship.toml ~/.config/starship.toml
+
+    cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
+
     echo "Moving starship.toml"
 
     echo "Copy Rofi config files"
