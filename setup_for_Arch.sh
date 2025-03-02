@@ -150,17 +150,10 @@ done
         ExecStart=
         ExecStart=-/usr/bin/agetty --autologin $USERNAME --noclear %I \$TERM 
         EOF'
-
-        # Reload systemd and restart getty service
-        sudo systemctl daemon-reexec
-        sudo systemctl restart getty@tty1
-
-        # Enable the service at boot
+	
         sudo systemctl enable getty@tty1
 
-
-
-		message="Setting up systemd service and timer för Flatpak"
+	message="Setting up systemd service and timer för Flatpak"
         message_length=${#message}
         spaces=$(( (${#separator} - message_length) / 2 ))
         printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
@@ -179,10 +172,11 @@ done
         echo "Systemd service and timer set up successfully!"
 
 
-		message="Klart"
+	message="Klart"
         message_length=${#message}
         spaces=$(( (${#separator} - message_length) / 2 ))
         printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
+	
 
 
 
