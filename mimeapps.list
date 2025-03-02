@@ -1,0 +1,8 @@
+[Default Applications]
+image/jpeg=feh.desktop
+image/png=feh.desktop
+audio/mpeg=ffplay.desktop
+video/mp4=ffplay.desktop
+video/x-matroska=ffplay.desktop
+inode/directory=pcmanfm.desktop
+
