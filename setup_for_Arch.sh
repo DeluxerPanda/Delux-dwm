@@ -8,6 +8,7 @@ titel_message="
  ██████╔╝███████╗███████╗╚██████╔╝██╔╝ ██╗    ██████╔╝╚███╔███╔╝██║ ╚═╝ ██║
  ╚═════╝ ╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝    ╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝                                          
 "
+
 print_message() {
     local message="$1"
     local message_length=${#message}
@@ -15,6 +16,8 @@ print_message() {
     local spaces=$(( (${#separator} - message_length) / 2 ))
     printf "%s\n%${spaces}s%s\n%s\n" "$separator" "" "$message" "$separator"
 }
+
+work_dir=$(pwd)
 
 if [ "$(id -u)" -eq 0 ]; then
     print_message "$titel_message"
@@ -40,65 +43,81 @@ else
                 ;;
         esac
     done
+fi
 
-    if [ -z "$work_dir" ]; then
-        work_dir=$(pwd)
-    fi
-
-    # Enabling multilib repository for Steam
+function Installing() {
     print_message "Enabling multilib repository for Steam"
-    sudo sed -i '/#\[multilib\]/s/^#//' /etc/pacman.conf
-    sudo sed -i '/#Include = \/etc\/pacman.d\/mirrorlist/s/^#//' /etc/pacman.conf
 
-    # Updating system
+    sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+    sudo pacman -Sy --noconfirm --needed
+
     print_message "Updating system"
     sudo pacman -Syy --noconfirm
-    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit bash-completion ttf-jetbrains-mono-nerd noto-fonts-emoji bat
-    sudo pacman -S --noconfirm fastfetch rofi btop picom starship feh ffmpeg pcmanfm arandr steam flatpak
 
-    flatpak install -y flathub org.prismlauncher.PrismLauncher
-    flatpak install -y flathub com.chatterino.chatterino
-    flatpak install -y flathub io.github.shiftey.Desktop
-    flatpak install -y flathub com.visualstudio.code
+    print_message "Installing essential packages"
+    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit bash-completion ttf-jetbrains-mono-nerd noto-fonts-emoji picom starship feh rofi
+
+    print_message "Installing additional packages"
+    sudo pacman -S --noconfirm fastfetch btop ffmpeg pcmanfm arandr steam bat github-cli
+
+    print_message "Installing Prism Launcher"
+    latest_release=$(curl -s https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest | grep "browser_download_url.*AppImage" | cut -d '"' -f 4)
+    wget $latest_release -O prismlauncher.AppImage
+    chmod +x prismlauncher.AppImage
+    sudo mv prismlauncher.AppImage /usr/local/bin/prismlauncher
+
+    print_message "Installing Chatterino"
+    latest_release=$(curl -s https://api.github.com/repos/Chatterino/chatterino2/releases/latest | grep "browser_download_url.*AppImage" | cut -d '"' -f 4)
+    wget $latest_release -O Chatterino-x86_64.AppImage
+    chmod +x Chatterino-x86_64.AppImage
+    sudo mv Chatterino-x86_64.AppImage /usr/local/bin/Chatterino
+}
+
+function CopyingFiles() {
+    print_message "Copying files"
 
     cp -r $work_dir/config/starship.toml ~/.config/starship.toml
     cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
 
-    echo "Moving starship.toml"
-    echo "Copy Rofi config files"
-
     mkdir -p ~/.config/rofi
     cp -r $work_dir/config/rofi/ ~/.config/rofi/
 
-    echo "Copy fastfetch config file"
+    mkdir -p ~/.config/fastfetch
     cp -r $work_dir/config/fastfetch/ ~/.config/fastfetch/
 
-    # Installing dwm, slstatus
-    print_message "Installing dwm, st, slstatus"
+    cp -r $work_dir/config/.bash_profile ~/.bash_profile
+    cp -r $work_dir/config/.bashrc ~/.bashrc
+
+    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
+}
+
+function buildingPackages() {
+    print_message "Building and installing dwm, st, slstatus"
+
+    mkdir -p ~/build
+    cd ~/build
+
     rm -rf dwm
     git clone https://github.com/DeluxerPanda/dwm.git
     cd dwm
     sudo make clean install
-    cd $work_dir
+    cd ~/build
 
     rm -rf st
     git clone https://github.com/DeluxerPanda/st.git
     cd st
     sudo make clean install
-    cd $work_dir
+    cd ~/build
 
     rm -rf slstatus
     git clone https://github.com/DeluxerPanda/slstatus.git
     cd slstatus
     sudo make clean install
-    cd $work_dir
+    cd ~/build  
+}
 
-    for app in ".bashrc" ".bash_profile"; do
-        echo "Moving $app"
-        cp -r $work_dir/config/"$app" ~/
-    done
-
-    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
+function setupAutologin() {
+    print_message "Setting up autologin"
 
     # Get the current username
     USERNAME=$(logname)
@@ -121,16 +140,11 @@ EOF"
 
     sudo systemctl enable getty@tty1
 
-    print_message "Setting up systemd service and timer för Flatpak"
-    echo "Updating Flatpak applications..."
-    flatpak update -y
+    print_message "Now you can reboot your system"
+}
 
-    # Setup systemd service and timer
-    echo "Setting up systemd service and timer..."
-    sudo cp -r $work_dir/services/flatpak-update.service /etc/systemd/system/flatpak-update.service
-    sudo systemctl daemon-reload
-    sudo systemctl enable --now flatpak-update.service
-    echo "Systemd service and timer set up successfully!"
 
-    print_message "Klart"
-fi
+Installing
+CopyingFiles
+buildingPackages
+setupAutologin
