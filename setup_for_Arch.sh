@@ -79,6 +79,8 @@ function CopyingFiles() {
     cp -r $work_dir/config/starship.toml ~/.config/starship.toml
     cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
 
+    cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
+
     mkdir -p ~/.config/rofi
     cp -r $work_dir/config/rofi/ ~/.config/rofi/
 
