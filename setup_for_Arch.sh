@@ -66,11 +66,37 @@ function Installing() {
     chmod +x prismlauncher.AppImage
     sudo mv prismlauncher.AppImage /usr/local/bin/prismlauncher
 
+    sudo cp -r $work_dir/images/PrismLauncherIcon.png /usr/local/bin/PrismLauncherIcon.png
+
+    sudo bash -c "cat <<'EOF' > /usr/share/applications/PrismLauncher.desktop
+[Desktop Entry]
+Name=Prism Launcher
+Comment=An Open Source Minecraft launcher
+Exec=/usr/local/bin/prismlauncher %u
+Icon=/usr/local/bin/PrismLauncherIcon.png
+Terminal=false
+Type=Application
+EOF"
+
     print_message "Installing Chatterino"
     latest_release=$(curl -s https://api.github.com/repos/Chatterino/chatterino2/releases/latest | grep "browser_download_url.*AppImage" | cut -d '"' -f 4)
     wget $latest_release -O Chatterino-x86_64.AppImage
     chmod +x Chatterino-x86_64.AppImage
+    
     sudo mv Chatterino-x86_64.AppImage /usr/local/bin/Chatterino
+    
+    sudo cp -r $work_dir/images/chatterinoIcon.png /usr/local/bin/chatterinoIcon.png
+    
+    sudo bash -c "cat <<'EOF' > /usr/share/applications/chatterino.desktop
+[Desktop Entry]
+Name=Chatterino
+Comment=Chatterino IRC client
+Exec=/usr/local/bin/chatterino %u
+Icon=/usr/local/bin/chatterinoIcon.png
+Terminal=false
+Type=Application
+EOF"
+
 }
 
 function CopyingFiles() {
@@ -92,7 +118,7 @@ function CopyingFiles() {
 }
 
 function buildingPackages() {
-    print_message "Building and installing dwm, st, slstatus"
+    print_message "Building and installing dwm, st, slstatus, YaY"
 
     mkdir -p ~/build
     cd ~/build
@@ -113,7 +139,13 @@ function buildingPackages() {
     git clone https://github.com/DeluxerPanda/slstatus.git
     cd slstatus
     sudo make clean install
-    cd ~/build  
+    cd ~/build
+
+    rm -rf yay
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ~/build
 }
 
 function setupAutologin() {
