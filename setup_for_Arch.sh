@@ -58,7 +58,7 @@ function Installing() {
     sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit bash-completion ttf-jetbrains-mono-nerd noto-fonts-emoji picom starship feh rofi
 
     print_message "Installing additional packages"
-    sudo pacman -S --noconfirm fastfetch btop ffmpeg pcmanfm arandr steam bat github-cli xarchiver
+    sudo pacman -S --noconfirm fastfetch btop ffmpeg pcmanfm arandr steam bat github-cli xarchiver streamlink
 
     print_message "Installing Prism Launcher"
     latest_release=$(curl -s https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest | grep "browser_download_url.*AppImage" | cut -d '"' -f 4)
