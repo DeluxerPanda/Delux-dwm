@@ -64,9 +64,9 @@ function Installing() {
     latest_release=$(curl -s https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest | grep "browser_download_url.*AppImage" | cut -d '"' -f 4)
     wget $latest_release -O prismlauncher.AppImage
     chmod +x prismlauncher.AppImage
-    sudo mv prismlauncher.AppImage /usr/local/bin/prismlauncher
+    sudo mv prismlauncher.AppImage /usr/local/bin/
 
-    sudo cp -r $work_dir/images/PrismLauncherIcon.png /usr/local/bin/PrismLauncherIcon.png
+    sudo cp -r $work_dir/images/PrismLauncherIcon.png /usr/local/bin/
 
     sudo bash -c "cat <<'EOF' > /usr/share/applications/PrismLauncher.desktop
 [Desktop Entry]
@@ -83,9 +83,9 @@ EOF"
     wget $latest_release -O Chatterino-x86_64.AppImage
     chmod +x Chatterino-x86_64.AppImage
     
-    sudo mv Chatterino-x86_64.AppImage /usr/local/bin/Chatterino
+    sudo mv Chatterino-x86_64.AppImage /usr/local/bin/
     
-    sudo cp -r $work_dir/images/chatterinoIcon.png /usr/local/bin/chatterinoIcon.png
+    sudo cp -r $work_dir/images/chatterinoIcon.png /usr/local/bin/
     
     sudo bash -c "cat <<'EOF' > /usr/share/applications/chatterino.desktop
 [Desktop Entry]
@@ -102,19 +102,18 @@ EOF"
 function CopyingFiles() {
     print_message "Copying files"
 
-    cp -r $work_dir/config/starship.toml ~/.config/starship.toml
-    cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
+    cp -r $work_dir/config/starship.toml ~/.config/
+    cp -r $work_dir/config/mimeapps.list ~/.config/
 
     mkdir -p ~/.config/rofi
-    cp -r $work_dir/config/rofi/ ~/.config/rofi/
-
+    cp -r $work_dir/config/rofi/ ~/.config/
     mkdir -p ~/.config/fastfetch
-    cp -r $work_dir/config/fastfetch/ ~/.config/fastfetch/
+    cp -r $work_dir/config/fastfetch/ ~/.config/
 
     cp -r $work_dir/config/.bash_profile ~/.bash_profile
     cp -r $work_dir/config/.bashrc ~/.bashrc
 
-    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
+    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/
 }
 
 function buildingPackages() {
