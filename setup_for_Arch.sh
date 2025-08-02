@@ -187,15 +187,8 @@ EOF"
     print_message "Now you can reboot your system"
 }
 
-
-function final(){
-    startx
-    exec st -e sh -c 'curl -fsSL https://christitus.com/linux | sh; exec $SHELL'
-}
-
 Installing
 virtualization
 CopyingFiles
 buildingPackages
 setupAutologin
-final
