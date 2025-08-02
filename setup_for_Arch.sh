@@ -124,8 +124,8 @@ fi
 function CopyingFiles() {
     print_message "Copying files"
 
-    cp -r $work_dir/config/starship.toml ~/.config/
-    cp -r $work_dir/config/mimeapps.list ~/.config/
+    cp -r $work_dir/config/starship.toml ~/.config/starship.toml
+    cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
 
     mkdir -p ~/.config/rofi
     cp -r $work_dir/config/rofi/ ~/.config/
