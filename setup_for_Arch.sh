@@ -18,6 +18,7 @@ print_message() {
 }
 
 work_dir=$(pwd)
+USERNAME=$(logname)
 
 if [ "$(id -u)" -eq 0 ]; then
     print_message "$titel_message"
@@ -40,64 +41,85 @@ else
                 ;;
             * )
                 echo "invalid response"
+                exit
                 ;;
         esac
     done
 fi
 
 function Installing() {
-    print_message "Enabling multilib repository for Steam"
 
+#updateing
     sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-    sudo pacman -Sy --noconfirm --needed
 
-    print_message "Updating system"
+    sudo pacman -Sy --noconfirm
+
     sudo pacman -Syy --noconfirm
 
-    print_message "Installing essential packages"
-    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit bash-completion ttf-jetbrains-mono-nerd noto-fonts-emoji picom starship feh rofi
+#system
+    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit wget curl git ffmpeg polkit-kde-agent java-runtime-common networkmanager
 
-    print_message "Installing additional packages"
-    sudo pacman -S --noconfirm fastfetch btop ffmpeg pcmanfm arandr steam bat github-cli xarchiver streamlink
+#virtualization
+    sudo pacman -Rdd --noconfirm iptables
+    sudo pacman -S --needed --noconfirm dnsmasq iptables-nft libvirt dmidecode virt-manager qemu-desktop qemu-emulators-full swtpm
 
-    print_message "Installing Prism Launcher"
-    latest_release=$(curl -s https://api.github.com/repos/PrismLauncher/PrismLauncher/releases/latest | grep "browser_download_url.*AppImage" | cut -d '"' -f 4)
-    wget $latest_release -O prismlauncher.AppImage
-    chmod +x prismlauncher.AppImage
-    sudo mv prismlauncher.AppImage /usr/local/bin/
+#fonts
+    sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
 
-    sudo cp -r $work_dir/images/PrismLauncherIcon.png /usr/local/bin/
+#programs
+    sudo pacman -S --noconfirm gimp rofi arandr xarchiver mpv streamlink flameshot firefox pavucontrol steam prismlauncher discord
 
-    sudo bash -c "cat <<'EOF' > /usr/share/applications/PrismLauncher.desktop
-[Desktop Entry]
-Name=Prism Launcher
-Comment=An Open Source Minecraft launcher
-Exec=/usr/local/bin/prismlauncher %u
-Icon=/usr/local/bin/PrismLauncherIcon.png
-Terminal=false
-Type=Application
-EOF"
+#KDE apps
+    sudo pacman -S --noconfirm kdeconnect dolphin
 
-    print_message "Installing Chatterino"
-    latest_release=$(curl -s https://api.github.com/repos/Chatterino/chatterino2/releases/latest | grep "browser_download_url.*AppImage" | cut -d '"' -f 4)
-    wget $latest_release -O Chatterino-x86_64.AppImage
-    chmod +x Chatterino-x86_64.AppImage
-    
-    sudo mv Chatterino-x86_64.AppImage /usr/local/bin/
-    
-    sudo cp -r $work_dir/images/chatterinoIcon.png /usr/local/bin/
-    
-    sudo bash -c "cat <<'EOF' > /usr/share/applications/chatterino.desktop
-[Desktop Entry]
-Name=Chatterino
-Comment=Chatterino IRC client
-Exec=/usr/local/bin/chatterino %u
-Icon=/usr/local/bin/chatterinoIcon.png
-Terminal=false
-Type=Application
-EOF"
+#terminal stuff 
+    sudo pacman -S --noconfirm starship picom bash-completion bat fastfetch btop
+
+# YAY
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si
+cd $work_dir
+rm -rf yay-bin
+
+
+#programs
+yay -S --noconfirm chatterino2-bin visual-studio-code-bin
+
+if lsusb | grep -q "GoXLRMini"; then
+yay -S --noconfirm goxlr-utility
+fi
 
 }
+
+function virtualization(){
+
+#setup virtualization
+if [ "$(egrep -c '(vmx|svm)' /proc/cpuinfo)" -gt 0 ]; then
+
+    sudo sed -i 's/^#\?firewall_backend\s*=\s*".*"/firewall_backend = "iptables"/' "/etc/libvirt/network.conf"
+
+    if systemctl is-active --quiet polkit; then
+        sudo sed -i 's/^#\?auth_unix_ro\s*=\s*".*"/auth_unix_ro = "polkit"/' "/etc/libvirt/libvirtd.conf"
+        sudo sed -i 's/^#\?auth_unix_rw\s*=\s*".*"/auth_unix_rw = "polkit"/' "/etc/libvirt/libvirtd.conf"
+    fi
+
+    sudo usermod "$USERNAME" -aG libvirt
+    sudo usermod "$USERNAME" -aG kvm
+
+    for value in libvirt libvirt_guest; do
+        if ! grep -wq "$value" /etc/nsswitch.conf; then
+            sudo sed -i "/^hosts:/ s/$/ ${value}/" /etc/nsswitch.conf
+        fi
+    done
+
+    sudo systemctl enable --now libvirtd.service
+    sudo virsh net-autostart default
+
+fi
+
+}
+
 
 function CopyingFiles() {
     print_message "Copying files"
@@ -113,11 +135,11 @@ function CopyingFiles() {
     cp -r $work_dir/config/.bash_profile ~/.bash_profile
     cp -r $work_dir/config/.bashrc ~/.bashrc
 
-    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/
+    #sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/
 }
 
 function buildingPackages() {
-    print_message "Building and installing dwm, st, slstatus, YaY"
+    print_message "Building and installing dwm, st, slstatus"
 
     mkdir -p ~/build
     cd ~/build
@@ -139,19 +161,10 @@ function buildingPackages() {
     cd slstatus
     sudo make clean install
     cd ~/build
-
-    rm -rf yay
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ~/build
 }
 
 function setupAutologin() {
     print_message "Setting up autologin"
-
-    # Get the current username
-    USERNAME=$(logname)
 
     # Check if user exists
     if ! id "$USERNAME" &>/dev/null; then
@@ -175,7 +188,14 @@ EOF"
 }
 
 
+function final(){
+    startx
+    exec st -e sh -c 'curl -fsSL https://christitus.com/linux | sh; exec $SHELL'
+}
+
 Installing
+virtualization
 CopyingFiles
 buildingPackages
 setupAutologin
+final
