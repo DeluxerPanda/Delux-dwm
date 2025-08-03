@@ -6,7 +6,9 @@ text/html=firefox.desktop
 
 # Text/code files
 text/plain=code.desktop
-inode/directory=org.kde.dolphin.desktop
+
+# File manager
+inode/directory=thunar.desktop
 
 # Images
 image/png=gimp.desktop
