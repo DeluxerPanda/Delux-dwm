@@ -171,7 +171,6 @@ EOF"
 }
 
 Installing
-virtualization
 CopyingFiles
 buildingPackages
 setupAutologin
