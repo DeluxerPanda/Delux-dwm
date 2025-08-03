@@ -8,7 +8,7 @@ text/html=firefox.desktop
 text/plain=code.desktop
 
 # File manager
-inode/directory=thunar.desktop
+inode/directory=pcmanfm.desktop
 
 # Images
 image/png=gimp.desktop
