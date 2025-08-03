@@ -66,10 +66,10 @@ function Installing() {
     sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
 
 #programs
-    sudo pacman -S --noconfirm gimp rofi arandr xarchiver mpv streamlink flameshot firefox pavucontrol steam prismlauncher discord feh
-
+    sudo pacman -S --noconfirm gimp rofi arandr xarchiver mpv streamlink flameshot firefox pavucontrol steam prismlauncher discord feh thunar
+ 
 #KDE apps
-    sudo pacman -S --noconfirm kdeconnect dolphin
+    sudo pacman -S --noconfirm kdeconnect
 
 #terminal stuff 
     sudo pacman -S --noconfirm starship picom bash-completion bat fastfetch btop
