@@ -48,6 +48,9 @@ else
 fi
 
 function Installing() {
+    clear
+    print_message "$titel_message"
+    print_message "installing packages"
 
 #updateing
     sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
@@ -59,15 +62,11 @@ function Installing() {
 #system
     sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit wget curl git ffmpeg polkit-kde-agent java-runtime-common networkmanager
 
-#virtualization
-    sudo pacman -Rdd --noconfirm iptables
-    sudo pacman -S --needed --noconfirm dnsmasq iptables-nft libvirt dmidecode virt-manager qemu-desktop qemu-emulators-full swtpm
-
 #fonts
     sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
 
 #programs
-    sudo pacman -S --noconfirm gimp rofi arandr xarchiver mpv streamlink flameshot firefox pavucontrol steam prismlauncher discord
+    sudo pacman -S --noconfirm gimp rofi arandr xarchiver mpv streamlink flameshot firefox pavucontrol steam prismlauncher discord feh
 
 #KDE apps
     sudo pacman -S --noconfirm kdeconnect dolphin
@@ -92,53 +91,34 @@ fi
 
 }
 
-function virtualization(){
-
-#setup virtualization
-if [ "$(egrep -c '(vmx|svm)' /proc/cpuinfo)" -gt 0 ]; then
-
-    sudo sed -i 's/^#\?firewall_backend\s*=\s*".*"/firewall_backend = "iptables"/' "/etc/libvirt/network.conf"
-
-    if systemctl is-active --quiet polkit; then
-        sudo sed -i 's/^#\?auth_unix_ro\s*=\s*".*"/auth_unix_ro = "polkit"/' "/etc/libvirt/libvirtd.conf"
-        sudo sed -i 's/^#\?auth_unix_rw\s*=\s*".*"/auth_unix_rw = "polkit"/' "/etc/libvirt/libvirtd.conf"
-    fi
-
-    sudo usermod "$USERNAME" -aG libvirt
-    sudo usermod "$USERNAME" -aG kvm
-
-    for value in libvirt libvirt_guest; do
-        if ! grep -wq "$value" /etc/nsswitch.conf; then
-            sudo sed -i "/^hosts:/ s/$/ ${value}/" /etc/nsswitch.conf
-        fi
-    done
-
-    sudo systemctl enable --now libvirtd.service
-    sudo virsh net-autostart default
-
-fi
-
-}
-
-
 function CopyingFiles() {
+    clear
+    print_message "$titel_message"
     print_message "Copying files"
 
+#Scripts
+    cp -r $work_dir/scripts ~/scripts
+#StarShip
     cp -r $work_dir/config/starship.toml ~/.config/starship.toml
+#MimeApps
     cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
-
-    mkdir -p ~/.config/rofi
-    cp -r $work_dir/config/rofi/ ~/.config/
-    mkdir -p ~/.config/fastfetch
-    cp -r $work_dir/config/fastfetch/ ~/.config/
-
+#Rofi
+    cp -r $work_dir/config/rofi/ ~/.config/rofi
+#FastFetch
+    cp -r $work_dir/config/fastfetch/ ~/.config/fastfetch
+#Bash Profile
     cp -r $work_dir/config/.bash_profile ~/.bash_profile
+#Bash RC
     cp -r $work_dir/config/.bashrc ~/.bashrc
-
+#X Init RC
+    cp -r $work_dir/config/.xinitrc ~/.xinitrc
+#AMD GPU
     #sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/
 }
 
 function buildingPackages() {
+    clear
+    print_message "$titel_message"
     print_message "Building and installing dwm, st, slstatus"
 
     mkdir -p ~/build
@@ -164,6 +144,8 @@ function buildingPackages() {
 }
 
 function setupAutologin() {
+    clear
+    print_message "$titel_message"
     print_message "Setting up autologin"
 
     # Check if user exists
@@ -184,7 +166,8 @@ EOF"
 
     sudo systemctl enable getty@tty1
 
-    print_message "Now you can reboot your system"
+    clear
+    curl -fsSL https://christitus.com/linux | sh
 }
 
 Installing

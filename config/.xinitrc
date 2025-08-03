@@ -1,10 +1,10 @@
-
 xset s off
 xset -dpms
-bash /home/deluxerpanda/.screenlayout/default.sh &
+~/scripts/screenlayout_default.sh &
+~/scripts/GoXLR_loopback.sh &
+/usr/lib/polkit-kde-authentication-agent-1 &
 slstatus &
 feh --randomize --bg-fill ~/Bilder/backgrounds/* &
-/usr/lib/polkit-kde-authentication-agent-1 &
 picom &
 flameshot &
 nm-applet &
