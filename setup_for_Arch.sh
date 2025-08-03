@@ -60,7 +60,7 @@ function Installing() {
     sudo pacman -Syy --noconfirm
 
 #system
-    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit wget curl git ffmpeg java-runtime-common networkmanager mate-polkit
+    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit wget curl git ffmpeg java-runtime-common networkmanager mate-polkit nfs-utils
 
 #fonts
     sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
@@ -113,7 +113,7 @@ function CopyingFiles() {
 #X Init RC
     cp -r $work_dir/config/.xinitrc ~/.xinitrc
 #AMD GPU
-    #sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/
+    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/
 }
 
 function buildingPackages() {
