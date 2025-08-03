@@ -60,7 +60,7 @@ function Installing() {
     sudo pacman -Syy --noconfirm
 
 #system
-    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit wget curl git ffmpeg polkit-kde-agent java-runtime-common networkmanager
+    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit wget curl git ffmpeg java-runtime-common networkmanager mate-polkit
 
 #fonts
     sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
