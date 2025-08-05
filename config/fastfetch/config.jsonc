@@ -1,17 +1,14 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-  "logo": {
-    "type": "kitty-direct",
-    "source": "~/.config/fastfetch/logo.png",
-  },
-  "display": {
-     "separator": " 󱦰 ",
-     "color": "green"
-  },
+"display": {
+"separator": " 󰑃  ",
+"color":"green"
+},
   "modules": [
         {
-            "type": "custom", // HardwareStart
-            "format": "┏━━━━━━━━━━━━━ \u001b[1mHardware Information\u001b[0m ━━━━━━━━━━━━━┓"
+            "type": "os",
+            "key": " ",
+            "format": "┏━━━━━━━━━━━━━━━━━━ \u001b[1m{2}\u001b[0m ━━━━━━━━━━━━━━━━━━┓"
         },
         {
             "type": "cpu",
@@ -19,7 +16,7 @@
         },
         {
             "type": "gpu",
-            "detectionMethod": "pci",
+
             "key": "  "
         },
         {
@@ -31,18 +28,8 @@
             "format": "┣━━━━━━━━━━━━━ \u001b[1mSoftware Information\u001b[0m ━━━━━━━━━━━━━┫"
         },
         {
-            "type": "os",
-            "key": "  " // Just get your distro's logo off nerdfonts.com
-        },
-        {
-            "type": "kernel",
-            "key": "  ",
-            "format": "{1} {2}"
-        },
-        {
             "type": "packages",
-            "key": "  󰏖",
-            "format": "{2} packages"
+            "key": "  󰏖"
         },
         {
             "type": "de",
@@ -67,7 +54,7 @@
         },
         {
             "type": "uptime",
-            "key": "  Uptime ",
+            "key": "  Uptime "
         },
         {
             "type": "custom", // InformationEnd
@@ -75,7 +62,42 @@
         },
         {
             "type": "colors",
-            "paddingLeft": 2,
+            "paddingLeft": 15,
             "symbol": "circle"
         }
-    ]}
+    ],
+    "logo": {
+        "source": "~/.config/fastfetch/nonbinary.txt",
+        "type": "file",
+        "color": {
+            "1": "#FCF434",
+            "2": "#FFFFFF",
+            "3": "#9C59D1",
+            "4": "#2C2C2C"
+        }
+    }
+
+}
+// nonbinary
+    // "logo": {
+    //     "source": "~/.config/fastfetch/nonbinary.txt",
+    //     "type": "file",
+    //     "color": {
+    //         "1": "#FCF434",
+    //         "2": "#FFFFFF",
+    //         "3": "#9C59D1",
+    //         "4": "#2C2C2C"
+    //     }
+    // }
+
+
+// Trans
+    // "logo": {
+    //     "source": "~/.config/fastfetch/trans.txt",
+    //     "type": "file",
+    //     "color": {
+    //         "1": "#5BCEFA",
+    //         "2": "#ffc0cb",
+    //         "3": "#FFFFFF"
+    //     }
+    // }
