@@ -18,9 +18,9 @@ cd Delux-dwm
 ```
 # Gör installationsskriptet körbart
 ```
-chmod +x setup_for_Arch.sh
+chmod +x setup_for_Arch_base.sh
 ```
 # Kör installationsskriptet
 ```
-./setup_for_Arch.sh
+./setup_for_Arch_base.sh
 ```

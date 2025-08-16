@@ -57,22 +57,22 @@ function Installing() {
 
     sudo pacman -Sy --noconfirm
 
-    sudo pacman -Syy --noconfirm
+    sudo pacman -Syu --noconfirm
 
 #system
-    sudo pacman -S --noconfirm base-devel git libx11 libxft xorg-server xorg-xinit wget curl git ffmpeg java-runtime-common networkmanager mate-polkit nfs-utils
+    sudo pacman -S --needed --noconfirm base-devel libx11 libxft xorg-server xorg-xinit ffmpeg networkmanager mate-polkit nfs-utils
 
 #fonts
-    sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
+    sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
 
 #programs
-    sudo pacman -S --noconfirm gimp rofi arandr xarchiver mpv streamlink flameshot firefox pavucontrol steam prismlauncher discord feh pcmanfm
+    sudo pacman -S --needed --noconfirm rofi arandr xarchiver mpv firefox pavucontrol feh pcmanfm-gtk3
  
 #KDE apps
-    sudo pacman -S --noconfirm kdeconnect
+    sudo pacman -S --needed --noconfirm kdeconnect
 
 #terminal stuff 
-    sudo pacman -S --noconfirm starship picom bash-completion bat fastfetch btop
+    sudo pacman -S --needed --noconfirm kitty starship picom bash-completion bat fastfetch btop
 
 # YAY
 git clone https://aur.archlinux.org/yay-bin.git
@@ -82,11 +82,8 @@ cd $work_dir
 rm -rf yay-bin
 
 
-#programs
-yay -S --noconfirm chatterino2-bin visual-studio-code-bin
-
 if lsusb | grep -q "GoXLRMini"; then
-yay -S --noconfirm goxlr-utility
+yay -S --needed --noconfirm goxlr-utility
 fi
 
 }
@@ -96,16 +93,24 @@ function CopyingFiles() {
     print_message "$titel_message"
     print_message "Copying files"
 
+#Background
+    mkdir -p ~/Bilder/backgrounds
+    cp -r $work_dir/config/wallpaper.jpg ~/Bilder/backgrounds/wallpaper.jpg
 #Scripts
-    cp -r $work_dir/scripts ~/scripts
+    cp -r $work_dir/scripts/ ~/scripts
 #StarShip
     cp -r $work_dir/config/starship.toml ~/.config/starship.toml
 #MimeApps
     cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
 #Rofi
+    mkdir -p ~/.config/rofi
     cp -r $work_dir/config/rofi/ ~/.config/rofi
 #FastFetch
+    mkdir -p ~/.config/fastfetch
     cp -r $work_dir/config/fastfetch/ ~/.config/fastfetch
+#Kitty
+    mkdir -p ~/.config/kitty
+    cp -r $work_dir/config/kitty/ ~/.config/kitty
 #Bash Profile
     cp -r $work_dir/config/.bash_profile ~/.bash_profile
 #Bash RC
@@ -130,17 +135,21 @@ function buildingPackages() {
     sudo make clean install
     cd ~/build
 
-    rm -rf st
-    git clone https://github.com/DeluxerPanda/st.git
-    cd st
-    sudo make clean install
-    cd ~/build
+    # rm -rf st
+    # git clone https://github.com/DeluxerPanda/st.git
+    # cd st
+    # sudo make clean install
+    # cd ~/build
 
     rm -rf slstatus
     git clone https://github.com/DeluxerPanda/slstatus.git
     cd slstatus
     sudo make clean install
     cd ~/build
+}
+
+configure_DarkMode() {
+        echo "QT_STYLE_OVERRIDE=adwaita-Dark" | sudo tee -a /etc/environment > /dev/null
 }
 
 function setupAutologin() {
@@ -173,4 +182,5 @@ EOF"
 Installing
 CopyingFiles
 buildingPackages
+configure_DarkMode
 setupAutologin
