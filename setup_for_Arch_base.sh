@@ -60,7 +60,7 @@ function Installing() {
     sudo pacman -Syu --noconfirm
 
 #system
-    sudo pacman -S --needed --noconfirm base-devel libx11 libxft xorg-server xorg-xinit ffmpeg networkmanager mate-polkit nfs-utils
+    sudo pacman -S --needed --noconfirm base-devel libx11 libxft xorg-server xorg-xinit ffmpeg networkmanager mate-polkit nfs-utils nano
 
 #fonts
     sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
@@ -97,20 +97,20 @@ function CopyingFiles() {
     mkdir -p ~/Bilder/backgrounds
     cp -r $work_dir/config/wallpaper.jpg ~/Bilder/backgrounds/wallpaper.jpg
 #Scripts
-    cp -r $work_dir/scripts/ ~/scripts
+    cp -r $work_dir/scripts ~/scripts
 #StarShip
     cp -r $work_dir/config/starship.toml ~/.config/starship.toml
 #MimeApps
     cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
 #Rofi
     mkdir -p ~/.config/rofi
-    cp -r $work_dir/config/rofi/ ~/.config/rofi
+    cp -r $work_dir/config/rofi ~/.config/rofi
 #FastFetch
     mkdir -p ~/.config/fastfetch
-    cp -r $work_dir/config/fastfetch/ ~/.config/fastfetch
+    cp -r $work_dir/config/fastfetch ~/.config/fastfetch
 #Kitty
     mkdir -p ~/.config/kitty
-    cp -r $work_dir/config/kitty/ ~/.config/kitty
+    cp -r $work_dir/config/kitty ~/.config/kitty
 #Bash Profile
     cp -r $work_dir/config/.bash_profile ~/.bash_profile
 #Bash RC
@@ -149,7 +149,7 @@ function buildingPackages() {
 }
 
 configure_DarkMode() {
-        echo "QT_STYLE_OVERRIDE=adwaita-Dark" | sudo tee -a /etc/environment > /dev/null
+        echo "GTK_THEME=Adwaita:dark" | sudo tee -a /etc/environment > /dev/null
 }
 
 function setupAutologin() {
