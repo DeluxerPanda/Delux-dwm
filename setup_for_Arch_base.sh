@@ -118,7 +118,7 @@ function CopyingFiles() {
 #X Init RC
     cp -r $work_dir/config/.xinitrc ~/.xinitrc
 #AMD GPU
-    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/
+    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
 }
 
 function buildingPackages() {
