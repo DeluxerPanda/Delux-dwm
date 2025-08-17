@@ -87,39 +87,52 @@ yay -S --needed --noconfirm goxlr-utility
 fi
 
 }
-
 function CopyingFiles() {
     clear
     print_message "$titel_message"
     print_message "Copying files"
 
-#Background
+    # Backgrounds
     mkdir -p ~/Bilder/backgrounds
-    cp -r $work_dir/config/wallpaper.jpg ~/Bilder/backgrounds/wallpaper.jpg
-#Scripts
-    cp -r $work_dir/scripts ~/scripts
-#StarShip
-    cp -r $work_dir/config/starship.toml ~/.config/starship.toml
-#MimeApps
-    cp -r $work_dir/config/mimeapps.list ~/.config/mimeapps.list
-#Rofi
+    cp "$work_dir/config/wallpaper.jpg" ~/Bilder/backgrounds/wallpaper.jpg
+
+    # Scripts
+    mkdir -p ~/scripts
+    cp -r "$work_dir"/scripts/* ~/scripts/
+
+    # Starship config
+    mkdir -p ~/.config
+    cp "$work_dir/config/starship.toml" ~/.config/starship.toml
+
+    # MimeApps
+    cp "$work_dir/config/mimeapps.list" ~/.config/mimeapps.list
+
+    # Rofi
     mkdir -p ~/.config/rofi
-    cp -r $work_dir/config/rofi ~/.config/rofi
-#FastFetch
+    cp -r "$work_dir"/config/rofi/* ~/.config/rofi/
+
+    # FastFetch
     mkdir -p ~/.config/fastfetch
-    cp -r $work_dir/config/fastfetch ~/.config/fastfetch
-#Kitty
+    cp -r "$work_dir"/config/fastfetch/* ~/.config/fastfetch/
+
+    # Kitty
     mkdir -p ~/.config/kitty
-    cp -r $work_dir/config/kitty.conf ~/.config/kitty/kitty.conf
-#Bash Profile
-    cp -r $work_dir/config/.bash_profile ~/.bash_profile
-#Bash RC
-    cp -r $work_dir/config/.bashrc ~/.bashrc
-#X Init RC
-    cp -r $work_dir/config/.xinitrc ~/.xinitrc
-#AMD GPU
-    sudo cp -r $work_dir/config/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
+    cp "$work_dir/config/kitty.conf" ~/.config/kitty/kitty.conf
+
+    # Bash Profile
+    cp "$work_dir/config/.bash_profile" ~/.bash_profile
+
+    # Bash RC
+    cp "$work_dir/config/.bashrc" ~/.bashrc
+
+    # Xinit RC
+    cp "$work_dir/config/.xinitrc" ~/.xinitrc
+
+    # AMD GPU config
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    sudo cp "$work_dir/config/20-amdgpu.conf" /etc/X11/xorg.conf.d/20-amdgpu.conf
 }
+
 
 function buildingPackages() {
     clear
