@@ -110,7 +110,7 @@ function CopyingFiles() {
     cp -r $work_dir/config/fastfetch ~/.config/fastfetch
 #Kitty
     mkdir -p ~/.config/kitty
-    cp -r $work_dir/config/kitty ~/.config/kitty
+    cp -r $work_dir/config/kitty.conf ~/.config/kitty/kitty.conf
 #Bash Profile
     cp -r $work_dir/config/.bash_profile ~/.bash_profile
 #Bash RC
