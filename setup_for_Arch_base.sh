@@ -77,7 +77,7 @@ function Installing() {
 # YAY
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
-makepkg -si
+makepkg --noconfirm -si
 cd $work_dir
 rm -rf yay-bin
 
