@@ -66,13 +66,13 @@ function Installing() {
     sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd noto-fonts-emoji
 
 #programs
-    sudo pacman -S --needed --noconfirm rofi arandr xarchiver mpv firefox pavucontrol feh pcmanfm-gtk3
+    sudo pacman -S --needed --noconfirm rofi arandr xarchiver mpv firefox pavucontrol feh pcmanfm-gtk3 dunst
  
 #KDE apps
     sudo pacman -S --needed --noconfirm kdeconnect
 
 #terminal stuff 
-    sudo pacman -S --needed --noconfirm kitty starship picom bash-completion bat fastfetch btop
+    sudo pacman -S --needed --noconfirm starship picom bash-completion bat fastfetch btop
 
 # YAY
 git clone https://aur.archlinux.org/yay-bin.git
@@ -148,11 +148,11 @@ function buildingPackages() {
     sudo make clean install
     cd ~/build
 
-    # rm -rf st
-    # git clone https://github.com/DeluxerPanda/st.git
-    # cd st
-    # sudo make clean install
-    # cd ~/build
+     rm -rf st
+     git clone https://github.com/DeluxerPanda/st.git
+     cd st
+     sudo make clean install
+     cd ~/build
 
     rm -rf slstatus
     git clone https://github.com/DeluxerPanda/slstatus.git

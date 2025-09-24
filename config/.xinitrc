@@ -2,6 +2,8 @@ xset s off
 xset -dpms
 ~/scripts/screenlayout_default.sh &
 ~/scripts/GoXLR_loopback.sh &
+dbus-update-activation-environment --systemd --all &
+dunst &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 slstatus &
 feh --randomize --bg-fill ~/Bilder/backgrounds/* &
